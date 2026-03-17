@@ -7,17 +7,17 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Unbounded:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0a0a0f;
-    --surface: #111118;
-    --surface2: #1a1a24;
-    --border: #2a2a3a;
-    --accent: #7c6af7;
-    --accent2: #4fd1c5;
-    --danger: #f56565;
-    --success: #68d391;
-    --warning: #f6ad55;
-    --text: #e2e8f0;
-    --text2: #718096;
+    --bg: #f0f2f7;
+    --surface: #ffffff;
+    --surface2: #f5f6fa;
+    --border: #e2e5ef;
+    --accent: #5b4ef5;
+    --accent2: #0ea5a0;
+    --danger: #e03e3e;
+    --success: #2e9e5b;
+    --warning: #d97706;
+    --text: #1a1d2e;
+    --text2: #6b7280;
     --font-head: 'Unbounded', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
   }
@@ -38,7 +38,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: radial-gradient(ellipse at 30% 50%, #1a1040 0%, var(--bg) 60%);
+    background: radial-gradient(ellipse at 30% 50%, #dcd8ff 0%, var(--bg) 60%);
   }
 
   .login-box {
@@ -171,7 +171,7 @@
   }
 
   .nav-item:hover { color: var(--text); background: var(--surface2); }
-  .nav-item.active { color: var(--accent); border-left-color: var(--accent); background: rgba(124,106,247,.08); }
+  .nav-item.active { color: var(--accent); border-left-color: var(--accent); background: rgba(91,78,245,.08); }
 
   .nav-icon { font-size: 16px; width: 20px; text-align: center; }
 
@@ -333,7 +333,7 @@
   }
 
   tr:last-child td { border-bottom: none; }
-  tr:hover td { background: rgba(124,106,247,.04); }
+  tr:hover td { background: rgba(91,78,245,.04); }
 
   .badge {
     display: inline-block;
@@ -585,7 +585,7 @@
   .text-danger { color: var(--danger); }
 
   ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--surface); }
+  ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 </style>
 </head>
