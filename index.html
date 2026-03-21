@@ -24,7 +24,6 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { background: var(--bg); color: var(--text); font-family: var(--font-mono); min-height: 100vh; overflow-x: hidden; }
 
-  /* LOGIN */
   #loginScreen { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: radial-gradient(ellipse at 30% 50%, #dcd8ff 0%, var(--bg) 60%); }
   .login-box { width: 400px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 48px 40px; position: relative; overflow: hidden; }
   .login-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
@@ -39,7 +38,6 @@
   .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
   .login-error { color: var(--danger); font-size: 12px; margin-top: 12px; text-align: center; min-height: 18px; }
 
-  /* APP */
   #app { display: none; min-height: 100vh; }
   .sidebar { position: fixed; left: 0; top: 0; bottom: 0; width: 220px; background: var(--surface); border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 24px 0; z-index: 100; }
   .sidebar-logo { font-family: var(--font-head); font-size: 16px; color: var(--accent); padding: 0 24px 24px; border-bottom: 1px solid var(--border); margin-bottom: 16px; }
@@ -61,7 +59,6 @@
   .page-title { font-family: var(--font-head); font-size: 20px; letter-spacing: -0.5px; }
   .page-title span { color: var(--accent); }
 
-  /* STATS */
   .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
   .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; position: relative; overflow: hidden; }
   .stat-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; }
@@ -74,7 +71,6 @@
   .stat-label { font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
   .stat-value { font-family: var(--font-head); font-size: 28px; }
 
-  /* TABLE */
   .table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
   .table-toolbar { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border); gap: 12px; flex-wrap: wrap; }
   .search-input { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 9px 14px; color: var(--text); font-family: var(--font-mono); font-size: 13px; outline: none; width: 260px; transition: border-color .2s; }
@@ -91,10 +87,6 @@
   .badge-volunteer { background: rgba(107,114,128,.12);color: var(--text2); }
   .badge-blocked   { background: rgba(224,62,62,.12);  color: var(--danger); }
   .badge-active    { background: rgba(46,158,91,.12);  color: var(--success); }
-  .badge-closed    { background: rgba(224,62,62,.12);  color: var(--danger); }
-  .badge-open      { background: rgba(46,158,91,.12);  color: var(--success); }
-  .badge-pending   { background: rgba(217,119,6,.12);  color: var(--warning); }
-  .badge-deleted   { background: rgba(107,114,128,.12);color: var(--text2); }
 
   .avatar { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; background: var(--surface2); border: 1px solid var(--border); }
   .avatar-placeholder { width: 34px; height: 34px; border-radius: 50%; background: var(--surface2); border: 1px solid var(--border); display: inline-flex; align-items: center; justify-content: center; font-size: 14px; }
@@ -108,7 +100,6 @@
   .loading { text-align: center; padding: 48px; color: var(--text2); font-size: 13px; }
   .empty { text-align: center; padding: 48px; color: var(--text2); font-size: 13px; }
 
-  /* MODAL */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.4); backdrop-filter: blur(4px); z-index: 1000; align-items: center; justify-content: center; }
   .modal-overlay.open { display: flex; }
   .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; width: 480px; max-width: 95vw; max-height: 90vh; overflow-y: auto; position: relative; }
@@ -149,7 +140,6 @@
 </head>
 <body>
 
-<!-- LOGIN -->
 <div id="loginScreen">
   <div class="login-box">
     <div class="login-logo">Time2Help</div>
@@ -163,13 +153,11 @@
   </div>
 </div>
 
-<!-- APP -->
 <div id="app">
   <div class="sidebar">
     <div class="sidebar-logo">Time2Help<span>// admin panel</span></div>
     <div class="nav-item active" onclick="showPage('dashboard')" id="nav-dashboard"><span class="nav-icon">▦</span> Дашборд</div>
     <div class="nav-item" onclick="showPage('users')" id="nav-users"><span class="nav-icon">◎</span> Пользователи</div>
-    <div class="nav-item" onclick="showPage('events')" id="nav-events"><span class="nav-icon">◈</span> Мероприятия</div>
     <div class="nav-item" onclick="showPage('reviews')" id="nav-reviews"><span class="nav-icon">★</span> Отзывы</div>
     <div class="nav-item" onclick="showPage('feedback')" id="nav-feedback"><span class="nav-icon">✉</span> Обратная связь</div>
     <div class="sidebar-bottom">
@@ -209,26 +197,6 @@
         <table>
           <thead><tr><th>Пользователь</th><th>Роль</th><th>Телефон</th><th>Дата рег.</th><th>Статус</th><th>Действия</th></tr></thead>
           <tbody id="usersTable"><tr><td colspan="6" class="loading">Загрузка...</td></tr></tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- EVENTS -->
-    <div class="page" id="page-events">
-      <div class="page-header"><div class="page-title">Мероприятия <span>//</span> Управление</div></div>
-      <div class="table-wrap">
-        <div class="table-toolbar">
-          <input class="search-input" type="text" placeholder="Поиск по названию..." oninput="filterEvents(this.value)">
-          <select class="search-input" style="width:160px" onchange="filterEventsByStatus(this.value)">
-            <option value="">Все статусы</option>
-            <option value="ACTIVE">ACTIVE</option>
-            <option value="CLOSED">CLOSED</option>
-            <option value="DELETED">DELETED</option>
-          </select>
-        </div>
-        <table>
-          <thead><tr><th>Название</th><th>Категория</th><th>Дата</th><th>Участники</th><th>Оценка</th><th>Статус</th><th>Действия</th></tr></thead>
-          <tbody id="eventsTable"><tr><td colspan="7" class="loading">Загрузка...</td></tr></tbody>
         </table>
       </div>
     </div>
@@ -307,50 +275,6 @@
   </div>
 </div>
 
-<!-- MODAL: Редактировать мероприятие -->
-<div class="modal-overlay" id="modalEditEvent">
-  <div class="modal">
-    <div class="modal-header"><div class="modal-title">Редактировать мероприятие</div><button class="modal-close" onclick="closeModal('modalEditEvent')">✕</button></div>
-    <div class="modal-body">
-      <input type="hidden" id="editEventId">
-      <div class="form-row"><label class="field-label">Название</label><input class="field-input" id="editEventTitle" type="text" style="margin:0"></div>
-      <div class="form-row"><label class="field-label">Описание</label><textarea class="field-input" id="editEventDesc" rows="3" style="margin:0;resize:vertical"></textarea></div>
-      <div class="form-row"><label class="field-label">Место</label><input class="field-input" id="editEventLocation" type="text" style="margin:0"></div>
-      <div class="form-row"><label class="field-label">Макс. участников (1–500)</label><input class="field-input" id="editEventMax" type="number" min="1" max="500" style="margin:0"></div>
-      <div class="form-row"><label class="field-label">Статус</label>
-        <select class="select-input" id="editEventStatus">
-          <option value="ACTIVE">ACTIVE</option>
-          <option value="CLOSED">CLOSED</option>
-          <option value="DELETED">DELETED</option>
-        </select>
-      </div>
-      <div class="form-row">
-        <div class="toggle-row">
-          <span class="toggle-label">Набор открыт</span>
-          <button class="toggle" id="editEventOpenToggle" onclick="toggleEventOpen()"></button>
-        </div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn-secondary" onclick="closeModal('modalEditEvent')">Отмена</button>
-      <button class="btn-primary" style="width:auto;padding:10px 24px" onclick="saveEvent()">Сохранить</button>
-    </div>
-  </div>
-</div>
-
-<!-- MODAL: Удалить мероприятие -->
-<div class="modal-overlay" id="modalDeleteEvent">
-  <div class="modal" style="width:380px">
-    <div class="modal-header"><div class="modal-title text-danger">Удалить мероприятие</div><button class="modal-close" onclick="closeModal('modalDeleteEvent')">✕</button></div>
-    <div class="modal-body"><p style="color:var(--text2);font-size:13px;line-height:1.6">Удалить мероприятие из Firestore?<br><strong style="color:var(--text)" id="deleteEventName"></strong></p></div>
-    <div class="modal-footer">
-      <input type="hidden" id="deleteEventId">
-      <button class="btn-secondary" onclick="closeModal('modalDeleteEvent')">Отмена</button>
-      <button class="btn-danger" onclick="confirmDeleteEvent()">Удалить</button>
-    </div>
-  </div>
-</div>
-
 <!-- MODAL: Просмотр отзыва -->
 <div class="modal-overlay" id="modalViewReview">
   <div class="modal" style="width:420px">
@@ -363,7 +287,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn-secondary" onclick="closeModal('modalViewReview')">Закрыть</button>
-      <button class="btn-danger" id="btnDeleteReview" onclick="confirmDeleteReview()">Удалить</button>
+      <button class="btn-danger" onclick="confirmDeleteReview()">Удалить</button>
     </div>
   </div>
 </div>
@@ -379,7 +303,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn-secondary" onclick="closeModal('modalViewFeedback')">Закрыть</button>
-      <button class="btn-danger" id="btnDeleteFeedback" onclick="confirmDeleteFeedback()">Удалить</button>
+      <button class="btn-danger" onclick="confirmDeleteFeedback()">Удалить</button>
     </div>
   </div>
 </div>
@@ -390,7 +314,7 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged }
     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-  import { getFirestore, collection, getDocs, doc, getDoc, updateDoc, deleteDoc, query, orderBy, limit }
+  import { getFirestore, collection, getDocs, doc, getDoc, updateDoc, deleteDoc }
     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
   const firebaseConfig = {
@@ -404,17 +328,14 @@
   const auth = getAuth(app);
   const db   = getFirestore(app);
 
-  // ── State ──────────────────────────────────────────────────────────────
   let allUsers    = [];
   let allEvents   = [];
   let allReviews  = [];
   let allFeedback = [];
-  let editBlockedState   = false;
-  let editEventOpenState = false;
+  let editBlockedState = false;
   let currentReviewId  = null;
   let currentFeedbackId = null;
 
-  // Cache для имён
   const userNameCache  = {};
   const eventNameCache = {};
 
@@ -423,8 +344,7 @@
     try {
       const s = await getDoc(doc(db, "users", uid));
       const n = s.data()?.fullName || s.data()?.email || uid;
-      userNameCache[uid] = n;
-      return n;
+      userNameCache[uid] = n; return n;
     } catch { return uid; }
   }
 
@@ -433,12 +353,10 @@
     try {
       const s = await getDoc(doc(db, "events", eid));
       const n = s.data()?.title || eid;
-      eventNameCache[eid] = n;
-      return n;
+      eventNameCache[eid] = n; return n;
     } catch { return eid; }
   }
 
-  // ── Auth ───────────────────────────────────────────────────────────────
   onAuthStateChanged(auth, async user => {
     if (!user) { showLogin(); return; }
     const snap = await getDoc(doc(db, "users", user.uid));
@@ -469,7 +387,6 @@
 
   window.doLogout = async () => { await signOut(auth); showLogin(); };
 
-  // ── Load ───────────────────────────────────────────────────────────────
   async function loadAll() {
     await Promise.all([loadUsers(), loadEvents(), loadReviews(), loadFeedback()]);
     updateStats();
@@ -484,7 +401,6 @@
   async function loadEvents() {
     const snap = await getDocs(collection(db, "events"));
     allEvents = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-    renderEvents(allEvents);
   }
 
   async function loadReviews() {
@@ -508,7 +424,6 @@
     document.getElementById("statReviews").textContent    = allReviews.length;
   }
 
-  // ── Render users ───────────────────────────────────────────────────────
   function renderUsers(users) {
     const tb = document.getElementById("usersTable");
     if (!users.length) { tb.innerHTML = '<tr><td colspan="6" class="empty">Пользователи не найдены</td></tr>'; return; }
@@ -543,42 +458,6 @@
     window.filterUsers(document.querySelector('#page-users .search-input').value);
   };
 
-  // ── Render events ──────────────────────────────────────────────────────
-  function renderEvents(events) {
-    const tb = document.getElementById("eventsTable");
-    if (!events.length) { tb.innerHTML = '<tr><td colspan="7" class="empty">Мероприятия не найдены</td></tr>'; return; }
-    tb.innerHTML = events.map(e => {
-      const dt  = e.dateTime ? new Date(e.dateTime.seconds * 1000).toLocaleDateString('ru') : '—';
-      const avg = e.avgRating ? `⭐ ${Number(e.avgRating).toFixed(1)} (${e.reviewCount||0})` : '—';
-      const statusBadge = e.status === 'ACTIVE' ? 'active' : e.status === 'CLOSED' ? 'closed' : 'deleted';
-      return `<tr>
-        <td style="font-weight:600;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${e.title||'—'}</td>
-        <td style="color:var(--text2)">${e.category||'—'}</td>
-        <td style="color:var(--text2)">${dt}</td>
-        <td style="color:var(--text2)">${e.currentCount||0} / ${e.maxParticipants||0}</td>
-        <td style="color:var(--warning)">${avg}</td>
-        <td><span class="badge badge-${statusBadge}">${e.status||'—'}</span></td>
-        <td><div class="actions">
-          <button class="btn-icon" onclick="openEditEvent('${e.id}')">✏️</button>
-          <button class="btn-icon danger" onclick="openDeleteEvent('${e.id}','${(e.title||'').replace(/'/g,"\\'")}')">🗑</button>
-        </div></td>
-      </tr>`;
-    }).join('');
-  }
-
-  let eventStatusFilter = '';
-  window.filterEvents = q => {
-    const f = q.toLowerCase();
-    renderEvents(allEvents.filter(e =>
-      (e.title||'').toLowerCase().includes(f) &&
-      (!eventStatusFilter || e.status === eventStatusFilter)));
-  };
-  window.filterEventsByStatus = s => {
-    eventStatusFilter = s;
-    window.filterEvents(document.querySelector('#page-events .search-input').value);
-  };
-
-  // ── Render reviews ─────────────────────────────────────────────────────
   async function renderReviews(reviews) {
     const tb = document.getElementById("reviewsTable");
     if (!reviews.length) { tb.innerHTML = '<tr><td colspan="6" class="empty">Отзывов нет</td></tr>'; return; }
@@ -642,7 +521,6 @@
     } catch(e) { toast("Ошибка: " + e.message, "error"); }
   };
 
-  // ── Render feedback ────────────────────────────────────────────────────
   async function renderFeedback(feedback) {
     const tb = document.getElementById("feedbackTable");
     if (!feedback.length) { tb.innerHTML = '<tr><td colspan="4" class="empty">Сообщений нет</td></tr>'; return; }
@@ -699,7 +577,6 @@
     } catch(e) { toast("Ошибка: " + e.message, "error"); }
   };
 
-  // ── User modals ────────────────────────────────────────────────────────
   window.openEditUser = id => {
     const u = allUsers.find(x => x.id === id);
     if (!u) return;
@@ -756,67 +633,6 @@
     } catch(e) { toast("Ошибка: " + e.message, "error"); }
   };
 
-  // ── Event modals ───────────────────────────────────────────────────────
-  window.openEditEvent = id => {
-    const e = allEvents.find(x => x.id === id);
-    if (!e) return;
-    document.getElementById("editEventId").value       = id;
-    document.getElementById("editEventTitle").value    = e.title       || '';
-    document.getElementById("editEventDesc").value     = e.description || '';
-    document.getElementById("editEventLocation").value = e.location    || '';
-    document.getElementById("editEventMax").value      = e.maxParticipants || '';
-    document.getElementById("editEventStatus").value   = e.status      || 'ACTIVE';
-    editEventOpenState = !!e.isOpen;
-    document.getElementById("editEventOpenToggle").className = "toggle" + (editEventOpenState ? " on" : "");
-    openModal("modalEditEvent");
-  };
-
-  window.toggleEventOpen = () => {
-    editEventOpenState = !editEventOpenState;
-    document.getElementById("editEventOpenToggle").className = "toggle" + (editEventOpenState ? " on" : "");
-  };
-
-  window.saveEvent = async () => {
-    const id     = document.getElementById("editEventId").value;
-    const maxVal = parseInt(document.getElementById("editEventMax").value);
-    if (isNaN(maxVal) || maxVal < 1 || maxVal > 500) { toast("Макс. участников: от 1 до 500", "error"); return; }
-    const data = {
-      title:           document.getElementById("editEventTitle").value.trim(),
-      description:     document.getElementById("editEventDesc").value.trim(),
-      location:        document.getElementById("editEventLocation").value.trim(),
-      maxParticipants: maxVal,
-      status:          document.getElementById("editEventStatus").value,
-      isOpen:          editEventOpenState,
-    };
-    try {
-      await updateDoc(doc(db, "events", id), data);
-      const idx = allEvents.findIndex(e => e.id === id);
-      if (idx >= 0) allEvents[idx] = { ...allEvents[idx], ...data };
-      renderEvents(allEvents);
-      closeModal("modalEditEvent");
-      toast("Мероприятие обновлено", "success");
-    } catch(e) { toast("Ошибка: " + e.message, "error"); }
-  };
-
-  window.openDeleteEvent = (id, name) => {
-    document.getElementById("deleteEventId").value = id;
-    document.getElementById("deleteEventName").textContent = name;
-    openModal("modalDeleteEvent");
-  };
-
-  window.confirmDeleteEvent = async () => {
-    const id = document.getElementById("deleteEventId").value;
-    try {
-      await deleteDoc(doc(db, "events", id));
-      allEvents = allEvents.filter(e => e.id !== id);
-      renderEvents(allEvents);
-      updateStats();
-      closeModal("modalDeleteEvent");
-      toast("Мероприятие удалено", "success");
-    } catch(e) { toast("Ошибка: " + e.message, "error"); }
-  };
-
-  // ── Helpers ────────────────────────────────────────────────────────────
   function showLogin() { document.getElementById("loginScreen").style.display = "flex"; document.getElementById("app").style.display = "none"; }
   function showApp()   { document.getElementById("loginScreen").style.display = "none"; document.getElementById("app").style.display = "block"; }
   function showError(msg) { document.getElementById("loginError").textContent = msg; }
