@@ -41,28 +41,35 @@
 
   /* APP */
   #app { display: none; min-height: 100vh; }
-  .sidebar { position: fixed; left: 0; top: 0; bottom: 0; width: 220px; background: var(--surface); border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 24px 0; z-index: 100; }
-  .sidebar-logo { font-family: var(--font-head); font-size: 16px; color: var(--accent); padding: 0 24px 24px; border-bottom: 1px solid var(--border); margin-bottom: 16px; }
+  .sidebar { position: fixed; left: 0; top: 0; bottom: 0; width: 240px; background: var(--surface); border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 24px 0; z-index: 100; overflow-y: auto; }
+  .sidebar-logo { font-family: var(--font-head); font-size: 16px; color: var(--accent); padding: 0 24px 24px; border-bottom: 1px solid var(--border); margin-bottom: 12px; }
   .sidebar-logo span { display: block; font-family: var(--font-mono); font-size: 10px; color: var(--text2); font-weight: 400; margin-top: 4px; }
-  .nav-item { display: flex; align-items: center; gap: 12px; padding: 12px 24px; color: var(--text2); cursor: pointer; font-size: 13px; transition: all .15s; border-left: 2px solid transparent; }
+  .nav-group { font-size: 10px; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; padding: 14px 24px 6px; }
+  .nav-item { display: flex; align-items: center; gap: 12px; padding: 9px 24px; color: var(--text2); cursor: pointer; font-size: 13px; transition: all .15s; border-left: 2px solid transparent; }
   .nav-item:hover { color: var(--text); background: var(--surface2); }
   .nav-item.active { color: var(--accent); border-left-color: var(--accent); background: rgba(91,78,245,.08); }
-  .nav-icon { font-size: 16px; width: 20px; text-align: center; }
+  .nav-icon { font-size: 14px; width: 18px; text-align: center; }
+  .nav-count { margin-left: auto; font-size: 10px; color: var(--text2); background: var(--surface2); padding: 2px 7px; border-radius: 10px; }
+  .nav-item.active .nav-count { background: rgba(91,78,245,.15); color: var(--accent); }
   .sidebar-bottom { margin-top: auto; padding: 16px 24px; border-top: 1px solid var(--border); }
   .admin-badge { font-size: 11px; color: var(--text2); margin-bottom: 12px; }
   .admin-badge strong { color: var(--accent); display: block; font-size: 13px; }
   .btn-logout { width: 100%; background: transparent; border: 1px solid var(--border); color: var(--text2); border-radius: 6px; padding: 8px; font-family: var(--font-mono); font-size: 12px; cursor: pointer; transition: all .15s; }
   .btn-logout:hover { border-color: var(--danger); color: var(--danger); }
 
-  .main { margin-left: 220px; padding: 32px; min-height: 100vh; }
+  .main { margin-left: 240px; padding: 32px; min-height: 100vh; }
   .page { display: none; }
   .page.active { display: block; }
-  .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; }
+  .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; gap: 12px; flex-wrap: wrap; }
   .page-title { font-family: var(--font-head); font-size: 20px; letter-spacing: -0.5px; }
   .page-title span { color: var(--accent); }
+  .page-actions { display: flex; gap: 8px; }
+  .btn-create { background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 9px 16px; font-family: var(--font-mono); font-size: 12px; font-weight: 600; cursor: pointer; transition: opacity .2s; }
+  .btn-create:hover { opacity: 0.9; }
+  .btn-create.alt { background: var(--accent2); }
 
   /* STATS */
-  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; margin-bottom: 32px; }
   .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; position: relative; overflow: hidden; }
   .stat-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; }
   .stat-card.c1::after { background: var(--accent); }
@@ -71,21 +78,27 @@
   .stat-card.c4::after { background: var(--warning); }
   .stat-card.c5::after { background: var(--danger); }
   .stat-card.c6::after { background: #8b5cf6; }
+  .stat-card.c7::after { background: #ec4899; }
+  .stat-card.c8::after { background: #0ea5e9; }
   .stat-label { font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-  .stat-value { font-family: var(--font-head); font-size: 28px; }
+  .stat-value { font-family: var(--font-head); font-size: 26px; }
+
+  .info-banner { background: rgba(91,78,245,.06); border: 1px solid rgba(91,78,245,.2); border-left: 3px solid var(--accent); border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; font-size: 12px; color: var(--text2); line-height: 1.6; }
+  .info-banner strong { color: var(--accent); }
 
   /* TABLE */
   .table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
   .table-toolbar { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border); gap: 12px; flex-wrap: wrap; }
   .search-input { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 9px 14px; color: var(--text); font-family: var(--font-mono); font-size: 13px; outline: none; width: 260px; transition: border-color .2s; }
   .search-input:focus { border-color: var(--accent); }
+  .table-scroll { overflow-x: auto; }
   table { width: 100%; border-collapse: collapse; }
-  th { text-align: left; padding: 12px 20px; font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border); background: var(--surface2); }
+  th { text-align: left; padding: 12px 20px; font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border); background: var(--surface2); white-space: nowrap; }
   td { padding: 14px 20px; font-size: 13px; border-bottom: 1px solid rgba(226,229,239,.5); vertical-align: middle; }
   tr:last-child td { border-bottom: none; }
   tr:hover td { background: rgba(91,78,245,.03); }
 
-  .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; white-space: nowrap; }
   .badge-admin     { background: rgba(91,78,245,.12);  color: var(--accent); }
   .badge-organizer { background: rgba(14,165,160,.12); color: var(--accent2); }
   .badge-volunteer { background: rgba(107,114,128,.12);color: var(--text2); }
@@ -94,24 +107,35 @@
   .badge-closed    { background: rgba(224,62,62,.12);  color: var(--danger); }
   .badge-open      { background: rgba(46,158,91,.12);  color: var(--success); }
   .badge-pending   { background: rgba(217,119,6,.12);  color: var(--warning); }
+  .badge-approved  { background: rgba(46,158,91,.12);  color: var(--success); }
+  .badge-rejected  { background: rgba(224,62,62,.12);  color: var(--danger); }
+  .badge-cancelled { background: rgba(107,114,128,.12);color: var(--text2); }
   .badge-deleted   { background: rgba(107,114,128,.12);color: var(--text2); }
+  .badge-inactive  { background: rgba(107,114,128,.12);color: var(--text2); }
+  .badge-read      { background: rgba(107,114,128,.12);color: var(--text2); }
+  .badge-unread    { background: rgba(91,78,245,.12);  color: var(--accent); }
 
   .avatar { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; background: var(--surface2); border: 1px solid var(--border); }
   .avatar-placeholder { width: 34px; height: 34px; border-radius: 50%; background: var(--surface2); border: 1px solid var(--border); display: inline-flex; align-items: center; justify-content: center; font-size: 14px; }
-  .cell-user { display: flex; align-items: center; gap: 12px; }
+  .cell-user { display: flex; align-items: center; gap: 12px; min-width: 200px; }
   .cell-user-name { font-weight: 600; font-size: 13px; }
   .cell-user-email { font-size: 11px; color: var(--text2); margin-top: 2px; }
-  .actions { display: flex; gap: 8px; }
-  .btn-icon { background: var(--surface2); border: 1px solid var(--border); color: var(--text2); border-radius: 6px; padding: 6px 10px; font-size: 13px; cursor: pointer; transition: all .15s; font-family: var(--font-mono); }
+  .actions { display: flex; gap: 6px; }
+  .btn-icon { background: var(--surface2); border: 1px solid var(--border); color: var(--text2); border-radius: 6px; padding: 6px 9px; font-size: 12px; cursor: pointer; transition: all .15s; font-family: var(--font-mono); white-space: nowrap; }
   .btn-icon:hover { border-color: var(--accent); color: var(--accent); }
   .btn-icon.danger:hover { border-color: var(--danger); color: var(--danger); }
+  .btn-icon.success:hover { border-color: var(--success); color: var(--success); }
+  .btn-icon.warning:hover { border-color: var(--warning); color: var(--warning); }
   .loading { text-align: center; padding: 48px; color: var(--text2); font-size: 13px; }
   .empty { text-align: center; padding: 48px; color: var(--text2); font-size: 13px; }
 
+  .cell-ellipsis { max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
   /* MODAL */
-  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.4); backdrop-filter: blur(4px); z-index: 1000; align-items: center; justify-content: center; }
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.4); backdrop-filter: blur(4px); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
   .modal-overlay.open { display: flex; }
-  .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; width: 480px; max-width: 95vw; max-height: 90vh; overflow-y: auto; position: relative; }
+  .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; width: 520px; max-width: 95vw; max-height: 90vh; overflow-y: auto; position: relative; }
+  .modal.wide { width: 720px; }
   .modal-header { padding: 24px 28px 0; display: flex; align-items: center; justify-content: space-between; }
   .modal-title { font-family: var(--font-head); font-size: 16px; }
   .modal-close { background: none; border: none; color: var(--text2); font-size: 20px; cursor: pointer; padding: 4px; }
@@ -123,6 +147,7 @@
   .btn-danger { background: var(--danger); color: #fff; border: none; border-radius: 8px; padding: 10px 20px; font-family: var(--font-mono); font-size: 13px; cursor: pointer; transition: opacity .2s; }
   .btn-danger:hover { opacity: 0.85; }
   .form-row { margin-bottom: 18px; }
+  .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px; }
   .select-input { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; color: var(--text); font-family: var(--font-mono); font-size: 14px; outline: none; transition: border-color .2s; cursor: pointer; }
   .select-input:focus { border-color: var(--accent); }
   .toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; }
@@ -132,6 +157,18 @@
   .toggle.on { background: var(--accent); }
   .toggle.on::after { transform: translateX(18px); }
 
+  /* CHIPS (skills) */
+  .chips-area { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 10px; min-height: 56px; display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-start; }
+  .chip { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 4px 8px 4px 12px; font-size: 12px; color: var(--text); display: inline-flex; align-items: center; gap: 6px; }
+  .chip button { background: none; border: none; cursor: pointer; color: var(--text2); font-size: 14px; line-height: 1; padding: 0 2px; }
+  .chip button:hover { color: var(--danger); }
+  .chip-suggest { background: rgba(91,78,245,.08); border-color: rgba(91,78,245,.25); color: var(--accent); cursor: pointer; padding: 4px 10px; font-size: 11px; }
+  .chip-suggest:hover { background: rgba(91,78,245,.15); }
+  .chip-add-row { display: flex; gap: 6px; margin-top: 8px; }
+  .chip-add-row input { flex: 1; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 9px 12px; font-family: var(--font-mono); font-size: 13px; outline: none; }
+  .chip-add-row input:focus { border-color: var(--accent); }
+  .chip-add-row button { background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 0 14px; font-family: var(--font-mono); font-size: 12px; cursor: pointer; }
+
   .toast-container { position: fixed; bottom: 24px; right: 24px; z-index: 9999; display: flex; flex-direction: column; gap: 8px; }
   .toast { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-size: 13px; animation: slideIn .2s ease; display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 12px rgba(0,0,0,.08); }
   .toast.success { border-left: 3px solid var(--success); }
@@ -139,8 +176,15 @@
   @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
   .text-danger { color: var(--danger); }
+  .text-muted  { color: var(--text2); }
   .comment-text { color: var(--text2); font-size: 12px; max-width: 280px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .stars { color: #f59e0b; font-size: 14px; }
+
+  .kv { display: grid; grid-template-columns: 110px 1fr; gap: 8px 12px; font-size: 13px; margin-bottom: 8px; }
+  .kv-key { color: var(--text2); font-size: 12px; }
+  .kv-val { word-break: break-word; }
+
+  .tag { display: inline-block; padding: 2px 8px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; font-size: 11px; margin: 2px 2px 0 0; color: var(--text2); }
 
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
@@ -167,11 +211,26 @@
 <div id="app">
   <div class="sidebar">
     <div class="sidebar-logo">Time2Help<span>// admin panel</span></div>
+
+    <div class="nav-group">Обзор</div>
     <div class="nav-item active" onclick="showPage('dashboard')" id="nav-dashboard"><span class="nav-icon">▦</span> Дашборд</div>
-    <div class="nav-item" onclick="showPage('users')" id="nav-users"><span class="nav-icon">◎</span> Пользователи</div>
-    <div class="nav-item" onclick="showPage('events')" id="nav-events"><span class="nav-icon">◈</span> Мероприятия</div>
-    <div class="nav-item" onclick="showPage('reviews')" id="nav-reviews"><span class="nav-icon">★</span> Отзывы</div>
-    <div class="nav-item" onclick="showPage('feedback')" id="nav-feedback"><span class="nav-icon">✉</span> Обратная связь</div>
+
+    <div class="nav-group">Контент</div>
+    <div class="nav-item" onclick="showPage('users')" id="nav-users"><span class="nav-icon">◎</span> Пользователи<span class="nav-count" id="cntUsers">—</span></div>
+    <div class="nav-item" onclick="showPage('events')" id="nav-events"><span class="nav-icon">◈</span> Мероприятия<span class="nav-count" id="cntEvents">—</span></div>
+    <div class="nav-item" onclick="showPage('series')" id="nav-series"><span class="nav-icon">↻</span> Серии<span class="nav-count" id="cntSeries">—</span></div>
+    <div class="nav-item" onclick="showPage('applications')" id="nav-applications"><span class="nav-icon">✎</span> Заявки<span class="nav-count" id="cntApps">—</span></div>
+
+    <div class="nav-group">Активность</div>
+    <div class="nav-item" onclick="showPage('notifications')" id="nav-notifications"><span class="nav-icon">⌖</span> Уведомления<span class="nav-count" id="cntNotifs">—</span></div>
+    <div class="nav-item" onclick="showPage('reviews')" id="nav-reviews"><span class="nav-icon">★</span> Отзывы<span class="nav-count" id="cntReviews">—</span></div>
+    <div class="nav-item" onclick="showPage('ratings')" id="nav-ratings"><span class="nav-icon">☆</span> Рейтинги<span class="nav-count" id="cntRatings">—</span></div>
+    <div class="nav-item" onclick="showPage('chats')" id="nav-chats"><span class="nav-icon">◊</span> Чаты<span class="nav-count" id="cntChats">—</span></div>
+    <div class="nav-item" onclick="showPage('feedback')" id="nav-feedback"><span class="nav-icon">✉</span> Обратная связь<span class="nav-count" id="cntFeedback">—</span></div>
+
+    <div class="nav-group">Справочники</div>
+    <div class="nav-item" onclick="showPage('skills')" id="nav-skills"><span class="nav-icon">▣</span> Навыки<span class="nav-count" id="cntSkills">—</span></div>
+
     <div class="sidebar-bottom">
       <div class="admin-badge"><strong id="adminName">—</strong>Администратор</div>
       <button class="btn-logout" onclick="doLogout()">Выйти</button>
@@ -186,16 +245,20 @@
       <div class="stats-grid">
         <div class="stat-card c1"><div class="stat-label">Пользователей</div><div class="stat-value" id="statUsers">—</div></div>
         <div class="stat-card c2"><div class="stat-label">Мероприятий</div><div class="stat-value" id="statEvents">—</div></div>
-        <div class="stat-card c3"><div class="stat-label">Организаторов</div><div class="stat-value" id="statOrganizers">—</div></div>
-        <div class="stat-card c4"><div class="stat-label">Активных</div><div class="stat-value" id="statActive">—</div></div>
+        <div class="stat-card c3"><div class="stat-label">Активных</div><div class="stat-value" id="statActive">—</div></div>
+        <div class="stat-card c4"><div class="stat-label">Организаторов</div><div class="stat-value" id="statOrganizers">—</div></div>
         <div class="stat-card c5"><div class="stat-label">Заблокировано</div><div class="stat-value" id="statBlocked">—</div></div>
         <div class="stat-card c6"><div class="stat-label">Отзывов</div><div class="stat-value" id="statReviews">—</div></div>
+        <div class="stat-card c7"><div class="stat-label">Заявок PENDING</div><div class="stat-value" id="statPending">—</div></div>
+        <div class="stat-card c8"><div class="stat-label">Серий</div><div class="stat-value" id="statSeries">—</div></div>
       </div>
     </div>
 
     <!-- USERS -->
     <div class="page" id="page-users">
-      <div class="page-header"><div class="page-title">Пользователи <span>//</span> Управление</div></div>
+      <div class="page-header">
+        <div class="page-title">Пользователи <span>//</span> Управление</div>
+      </div>
       <div class="table-wrap">
         <div class="table-toolbar">
           <input class="search-input" type="text" placeholder="Поиск по имени или email..." oninput="filterUsers(this.value)">
@@ -206,16 +269,21 @@
             <option value="ADMIN">ADMIN</option>
           </select>
         </div>
-        <table>
-          <thead><tr><th>Пользователь</th><th>Роль</th><th>Телефон</th><th>Дата рег.</th><th>Статус</th><th>Действия</th></tr></thead>
-          <tbody id="usersTable"><tr><td colspan="6" class="loading">Загрузка...</td></tr></tbody>
-        </table>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Пользователь</th><th>Роль</th><th>Телефон</th><th>Навыки</th><th>Дата рег.</th><th>Статус</th><th>Действия</th></tr></thead>
+            <tbody id="usersTable"><tr><td colspan="7" class="loading">Загрузка...</td></tr></tbody>
+          </table>
+        </div>
       </div>
     </div>
 
     <!-- EVENTS -->
     <div class="page" id="page-events">
-      <div class="page-header"><div class="page-title">Мероприятия <span>//</span> Управление</div></div>
+      <div class="page-header">
+        <div class="page-title">Мероприятия <span>//</span> Управление</div>
+        <div class="page-actions"><button class="btn-create" onclick="openCreateEvent()">+ Новое мероприятие</button></div>
+      </div>
       <div class="table-wrap">
         <div class="table-toolbar">
           <input class="search-input" type="text" placeholder="Поиск по названию..." oninput="filterEvents(this.value)">
@@ -225,11 +293,95 @@
             <option value="CLOSED">CLOSED</option>
             <option value="DELETED">DELETED</option>
           </select>
+          <select class="search-input" style="width:180px" onchange="filterEventsByCategory(this.value)" id="eventsCategoryFilter">
+            <option value="">Все категории</option>
+          </select>
         </div>
-        <table>
-          <thead><tr><th>Название</th><th>Категория</th><th>Дата</th><th>Участники</th><th>Оценка</th><th>Статус</th><th>Действия</th></tr></thead>
-          <tbody id="eventsTable"><tr><td colspan="7" class="loading">Загрузка...</td></tr></tbody>
-        </table>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Название</th><th>Категория</th><th>Дата</th><th>Участники</th><th>Оценка</th><th>Статус</th><th>Действия</th></tr></thead>
+            <tbody id="eventsTable"><tr><td colspan="7" class="loading">Загрузка...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERIES -->
+    <div class="page" id="page-series">
+      <div class="page-header">
+        <div class="page-title">Серии <span>//</span> Еженедельные мероприятия</div>
+        <div class="page-actions"><button class="btn-create" onclick="openCreateSeries()">+ Новая серия</button></div>
+      </div>
+      <div class="info-banner">Серия — шаблон еженедельного мероприятия. Создаёт повторяющиеся события в выбранные дни недели.</div>
+      <div class="table-wrap">
+        <div class="table-toolbar">
+          <input class="search-input" type="text" placeholder="Поиск по названию..." oninput="filterSeries(this.value)">
+          <select class="search-input" style="width:160px" onchange="filterSeriesByStatus(this.value)">
+            <option value="">Все статусы</option>
+            <option value="ACTIVE">ACTIVE</option>
+            <option value="INACTIVE">INACTIVE</option>
+            <option value="DELETED">DELETED</option>
+          </select>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Название</th><th>Категория</th><th>Дни</th><th>Время</th><th>Лимит</th><th>Статус</th><th>Действия</th></tr></thead>
+            <tbody id="seriesTable"><tr><td colspan="7" class="loading">Загрузка...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- APPLICATIONS -->
+    <div class="page" id="page-applications">
+      <div class="page-header"><div class="page-title">Заявки <span>//</span> Модерация</div></div>
+      <div class="info-banner">При смене статуса на <strong>REJECTED</strong> или <strong>CANCELLED</strong> обязательна причина — она отправится волонтёру в уведомлении <code>APPLICATION_STATUS</code>.</div>
+      <div class="table-wrap">
+        <div class="table-toolbar">
+          <input class="search-input" type="text" placeholder="Поиск по имени/мероприятию..." oninput="filterApps(this.value)">
+          <select class="search-input" style="width:160px" onchange="filterAppsByStatus(this.value)">
+            <option value="">Все статусы</option>
+            <option value="PENDING">PENDING</option>
+            <option value="APPROVED">APPROVED</option>
+            <option value="REJECTED">REJECTED</option>
+            <option value="CANCELLED">CANCELLED</option>
+          </select>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Волонтёр</th><th>Мероприятие</th><th>Дата подачи</th><th>Статус</th><th>Пришёл</th><th>Действия</th></tr></thead>
+            <tbody id="appsTable"><tr><td colspan="6" class="loading">Загрузка...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTIFICATIONS -->
+    <div class="page" id="page-notifications">
+      <div class="page-header">
+        <div class="page-title">Уведомления <span>//</span> Лента</div>
+        <div class="page-actions"><button class="btn-create" onclick="openBroadcast()">+ Рассылка</button></div>
+      </div>
+      <div class="info-banner">Рассылка создаёт записи в коллекции <code>notifications</code> для выбранной аудитории. Пуши не используются — это in-app лента.</div>
+      <div class="table-wrap">
+        <div class="table-toolbar">
+          <input class="search-input" type="text" placeholder="Поиск по заголовку/тексту..." oninput="filterNotifs(this.value)">
+          <select class="search-input" style="width:200px" onchange="filterNotifsByType(this.value)">
+            <option value="">Все типы</option>
+            <option value="REMINDER">REMINDER</option>
+            <option value="APPLICATION_STATUS">APPLICATION_STATUS</option>
+            <option value="EVENT_CHANGED">EVENT_CHANGED</option>
+            <option value="CHAT_MESSAGE">CHAT_MESSAGE</option>
+            <option value="CHAT_INVITE">CHAT_INVITE</option>
+            <option value="SYSTEM">SYSTEM</option>
+          </select>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Получатель</th><th>Тип</th><th>Заголовок</th><th>Текст</th><th>Дата</th><th>Прочитано</th><th>Действия</th></tr></thead>
+            <tbody id="notifsTable"><tr><td colspan="7" class="loading">Загрузка...</td></tr></tbody>
+          </table>
+        </div>
       </div>
     </div>
 
@@ -240,10 +392,50 @@
         <div class="table-toolbar">
           <input class="search-input" type="text" placeholder="Поиск по комментарию..." oninput="filterReviews(this.value)">
         </div>
-        <table>
-          <thead><tr><th>Мероприятие</th><th>Пользователь</th><th>Оценка</th><th>Комментарий</th><th>Дата</th><th>Действия</th></tr></thead>
-          <tbody id="reviewsTable"><tr><td colspan="6" class="loading">Загрузка...</td></tr></tbody>
-        </table>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Мероприятие</th><th>Пользователь</th><th>Оценка</th><th>Комментарий</th><th>Дата</th><th>Действия</th></tr></thead>
+            <tbody id="reviewsTable"><tr><td colspan="6" class="loading">Загрузка...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- RATINGS -->
+    <div class="page" id="page-ratings">
+      <div class="page-header"><div class="page-title">Рейтинги волонтёров <span>//</span> От организаторов</div></div>
+      <div class="info-banner">Оценки от организаторов. При удалении оценки <strong>avgVolunteerRating</strong> у пользователя автоматически пересчитывается.</div>
+      <div class="table-wrap">
+        <div class="table-toolbar">
+          <input class="search-input" type="text" placeholder="Поиск..." oninput="filterRatings(this.value)">
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Волонтёр</th><th>Организатор</th><th>Мероприятие</th><th>Оценка</th><th>Дата</th><th>Действия</th></tr></thead>
+            <tbody id="ratingsTable"><tr><td colspan="6" class="loading">Загрузка...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHATS -->
+    <div class="page" id="page-chats">
+      <div class="page-header"><div class="page-title">Чаты <span>//</span> Прямые и групповые</div></div>
+      <div class="table-wrap">
+        <div class="table-toolbar">
+          <input class="search-input" type="text" placeholder="Поиск по названию..." oninput="filterChats(this.value)">
+          <select class="search-input" style="width:160px" onchange="filterChatsByType(this.value)">
+            <option value="">Все типы</option>
+            <option value="direct">direct</option>
+            <option value="group">group</option>
+          </select>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Название</th><th>Тип</th><th>Участники</th><th>Последнее сообщение</th><th>Обновлён</th><th>Действия</th></tr></thead>
+            <tbody id="chatsTable"><tr><td colspan="6" class="loading">Загрузка...</td></tr></tbody>
+          </table>
+        </div>
       </div>
     </div>
 
@@ -254,15 +446,42 @@
         <div class="table-toolbar">
           <input class="search-input" type="text" placeholder="Поиск по тексту..." oninput="filterFeedback(this.value)">
         </div>
-        <table>
-          <thead><tr><th>Пользователь</th><th>Сообщение</th><th>Дата</th><th>Действия</th></tr></thead>
-          <tbody id="feedbackTable"><tr><td colspan="4" class="loading">Загрузка...</td></tr></tbody>
-        </table>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Пользователь</th><th>Сообщение</th><th>Дата</th><th>Действия</th></tr></thead>
+            <tbody id="feedbackTable"><tr><td colspan="4" class="loading">Загрузка...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SKILLS CATALOG -->
+    <div class="page" id="page-skills">
+      <div class="page-header">
+        <div class="page-title">Навыки <span>//</span> Справочник</div>
+        <div class="page-actions">
+          <button class="btn-create alt" onclick="seedSkills()">⤓ Импорт дефолтов</button>
+          <button class="btn-create" onclick="openCreateSkill()">+ Добавить навык</button>
+        </div>
+      </div>
+      <div class="info-banner">Каталог навыков для подсказок в профиле волонтёра. Сохраняется в коллекции <code>skills</code>. Поле <code>users[].skills</code> при этом остаётся произвольным — пользователь может добавить и свой навык. <strong>Импорт дефолтов</strong> добавит 16 базовых навыков, не дублируя существующие.</div>
+      <div class="table-wrap">
+        <div class="table-toolbar">
+          <input class="search-input" type="text" placeholder="Поиск..." oninput="filterSkills(this.value)">
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Название</th><th>Сортировка</th><th>Добавлен</th><th>Действия</th></tr></thead>
+            <tbody id="skillsTable"><tr><td colspan="4" class="loading">Загрузка...</td></tr></tbody>
+          </table>
+        </div>
       </div>
     </div>
 
   </div>
 </div>
+
+<!-- ── MODALS ─────────────────────────────────────────────────────────── -->
 
 <!-- MODAL: Редактировать пользователя -->
 <div class="modal-overlay" id="modalEditUser">
@@ -271,20 +490,35 @@
     <div class="modal-body">
       <input type="hidden" id="editUserId">
       <div class="form-row"><label class="field-label">ФИО</label><input class="field-input" id="editFullName" type="text" style="margin:0"></div>
-      <div class="form-row"><label class="field-label">Телефон</label><input class="field-input" id="editPhone" type="text" style="margin:0"></div>
-      <div class="form-row"><label class="field-label">Дата рождения</label><input class="field-input" id="editBirthDate" type="text" placeholder="DD.MM.YYYY" style="margin:0"></div>
-      <div class="form-row"><label class="field-label">Роль</label>
-        <select class="select-input" id="editRole">
-          <option value="VOLUNTEER">VOLUNTEER</option>
-          <option value="ORGANIZER">ORGANIZER</option>
-          <option value="ADMIN">ADMIN</option>
-        </select>
+      <div class="form-row-2">
+        <div><label class="field-label">Телефон</label><input class="field-input" id="editPhone" type="text" style="margin:0"></div>
+        <div><label class="field-label">Дата рождения</label><input class="field-input" id="editBirthDate" type="text" placeholder="DD.MM.YYYY" style="margin:0"></div>
+      </div>
+      <div class="form-row"><label class="field-label">О себе</label><textarea class="field-input" id="editAboutMe" rows="2" style="margin:0;resize:vertical"></textarea></div>
+      <div class="form-row-2">
+        <div><label class="field-label">Роль</label>
+          <select class="select-input" id="editRole">
+            <option value="VOLUNTEER">VOLUNTEER</option>
+            <option value="ORGANIZER">ORGANIZER</option>
+            <option value="ADMIN">ADMIN</option>
+          </select>
+        </div>
+        <div>
+          <label class="field-label">Заблокирован</label>
+          <div class="toggle-row" style="padding:9px 14px">
+            <span class="toggle-label">Заблокирован</span>
+            <button class="toggle" id="editBlockedToggle" onclick="toggleBlocked()"></button>
+          </div>
+        </div>
       </div>
       <div class="form-row">
-        <div class="toggle-row">
-          <span class="toggle-label">Заблокирован</span>
-          <button class="toggle" id="editBlockedToggle" onclick="toggleBlocked()"></button>
+        <label class="field-label">Навыки <span style="text-transform:none;color:var(--text2)">(до 15)</span></label>
+        <div class="chips-area" id="editSkillsChips"></div>
+        <div class="chip-add-row">
+          <input id="editSkillAdd" type="text" placeholder="Свой навык + Enter" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomSkill();}">
+          <button onclick="addCustomSkill()">+</button>
         </div>
+        <div class="chips-area" id="editSkillsSuggest" style="margin-top:8px;background:transparent;border:none;padding:0;min-height:auto"></div>
       </div>
     </div>
     <div class="modal-footer">
@@ -307,27 +541,47 @@
   </div>
 </div>
 
-<!-- MODAL: Редактировать мероприятие -->
+<!-- MODAL: Создать/Редактировать мероприятие -->
 <div class="modal-overlay" id="modalEditEvent">
-  <div class="modal">
-    <div class="modal-header"><div class="modal-title">Редактировать мероприятие</div><button class="modal-close" onclick="closeModal('modalEditEvent')">✕</button></div>
+  <div class="modal wide">
+    <div class="modal-header"><div class="modal-title" id="evModalTitle">Редактировать мероприятие</div><button class="modal-close" onclick="closeModal('modalEditEvent')">✕</button></div>
     <div class="modal-body">
       <input type="hidden" id="editEventId">
       <div class="form-row"><label class="field-label">Название</label><input class="field-input" id="editEventTitle" type="text" style="margin:0"></div>
       <div class="form-row"><label class="field-label">Описание</label><textarea class="field-input" id="editEventDesc" rows="3" style="margin:0;resize:vertical"></textarea></div>
-      <div class="form-row"><label class="field-label">Место</label><input class="field-input" id="editEventLocation" type="text" style="margin:0"></div>
-      <div class="form-row"><label class="field-label">Макс. участников (1–500)</label><input class="field-input" id="editEventMax" type="number" min="1" max="500" style="margin:0"></div>
-      <div class="form-row"><label class="field-label">Статус</label>
-        <select class="select-input" id="editEventStatus">
-          <option value="ACTIVE">ACTIVE</option>
-          <option value="CLOSED">CLOSED</option>
-          <option value="DELETED">DELETED</option>
-        </select>
+      <div class="form-row-2">
+        <div><label class="field-label">Категория</label>
+          <select class="select-input" id="editEventCategory"></select>
+        </div>
+        <div><label class="field-label">Дата и время</label>
+          <input class="field-input" id="editEventDateTime" type="datetime-local" style="margin:0">
+        </div>
       </div>
-      <div class="form-row">
+      <div class="form-row"><label class="field-label">Место</label><input class="field-input" id="editEventLocation" type="text" style="margin:0"></div>
+      <div class="form-row-2">
+        <div><label class="field-label">Макс. участников (1–500)</label><input class="field-input" id="editEventMax" type="number" min="1" max="500" style="margin:0"></div>
+        <div><label class="field-label">URL изображения</label><input class="field-input" id="editEventImage" type="text" placeholder="https://..." style="margin:0"></div>
+      </div>
+      <div class="form-row-2">
+        <div><label class="field-label">Статус</label>
+          <select class="select-input" id="editEventStatus">
+            <option value="ACTIVE">ACTIVE</option>
+            <option value="CLOSED">CLOSED</option>
+            <option value="DELETED">DELETED</option>
+          </select>
+        </div>
+        <div>
+          <label class="field-label">Набор открыт</label>
+          <div class="toggle-row" style="padding:9px 14px">
+            <span class="toggle-label">isOpen</span>
+            <button class="toggle" id="editEventOpenToggle" onclick="toggleEventOpen()"></button>
+          </div>
+        </div>
+      </div>
+      <div class="form-row" id="editEventNotifyRow">
         <div class="toggle-row">
-          <span class="toggle-label">Набор открыт</span>
-          <button class="toggle" id="editEventOpenToggle" onclick="toggleEventOpen()"></button>
+          <span class="toggle-label">Уведомить APPROVED при изменениях даты/места/статуса</span>
+          <button class="toggle on" id="editEventNotifyToggle" onclick="toggleEventNotify()"></button>
         </div>
       </div>
     </div>
@@ -351,6 +605,156 @@
   </div>
 </div>
 
+<!-- MODAL: Создать/Редактировать серию -->
+<div class="modal-overlay" id="modalEditSeries">
+  <div class="modal wide">
+    <div class="modal-header"><div class="modal-title" id="srModalTitle">Редактировать серию</div><button class="modal-close" onclick="closeModal('modalEditSeries')">✕</button></div>
+    <div class="modal-body">
+      <input type="hidden" id="editSeriesId">
+      <div class="form-row"><label class="field-label">Название</label><input class="field-input" id="editSeriesTitle" type="text" style="margin:0"></div>
+      <div class="form-row"><label class="field-label">Описание</label><textarea class="field-input" id="editSeriesDesc" rows="2" style="margin:0;resize:vertical"></textarea></div>
+      <div class="form-row-2">
+        <div><label class="field-label">Категория</label><select class="select-input" id="editSeriesCategory"></select></div>
+        <div><label class="field-label">Место</label><input class="field-input" id="editSeriesLocation" type="text" style="margin:0"></div>
+      </div>
+      <div class="form-row-2">
+        <div><label class="field-label">Макс. участников</label><input class="field-input" id="editSeriesMax" type="number" min="1" max="500" style="margin:0"></div>
+        <div><label class="field-label">Изображение URL</label><input class="field-input" id="editSeriesImage" type="text" style="margin:0"></div>
+      </div>
+      <div class="form-row">
+        <label class="field-label">Дни недели</label>
+        <div id="editSeriesDays" style="display:flex;gap:6px;flex-wrap:wrap"></div>
+      </div>
+      <div class="form-row-2">
+        <div><label class="field-label">Время начала</label><input class="field-input" id="editSeriesTime" type="time" style="margin:0"></div>
+        <div><label class="field-label">Дата начала серии</label><input class="field-input" id="editSeriesStartsAt" type="date" style="margin:0"></div>
+      </div>
+      <div class="form-row">
+        <label class="field-label">Статус</label>
+        <select class="select-input" id="editSeriesStatus">
+          <option value="ACTIVE">ACTIVE</option>
+          <option value="INACTIVE">INACTIVE</option>
+          <option value="DELETED">DELETED</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="closeModal('modalEditSeries')">Отмена</button>
+      <button class="btn-primary" style="width:auto;padding:10px 24px" onclick="saveSeries()">Сохранить</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Удалить серию -->
+<div class="modal-overlay" id="modalDeleteSeries">
+  <div class="modal" style="width:380px">
+    <div class="modal-header"><div class="modal-title text-danger">Удалить серию</div><button class="modal-close" onclick="closeModal('modalDeleteSeries')">✕</button></div>
+    <div class="modal-body"><p style="color:var(--text2);font-size:13px;line-height:1.6">Удалить серию из Firestore?<br><strong style="color:var(--text)" id="deleteSeriesName"></strong></p></div>
+    <div class="modal-footer">
+      <input type="hidden" id="deleteSeriesId">
+      <button class="btn-secondary" onclick="closeModal('modalDeleteSeries')">Отмена</button>
+      <button class="btn-danger" onclick="confirmDeleteSeries()">Удалить</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Просмотр заявки + смена статуса -->
+<div class="modal-overlay" id="modalApp">
+  <div class="modal">
+    <div class="modal-header"><div class="modal-title">Заявка</div><button class="modal-close" onclick="closeModal('modalApp')">✕</button></div>
+    <div class="modal-body">
+      <input type="hidden" id="appId">
+      <div class="kv">
+        <div class="kv-key">Волонтёр</div>      <div class="kv-val" id="appUserName">—</div>
+        <div class="kv-key">Email</div>         <div class="kv-val" id="appUserEmail">—</div>
+        <div class="kv-key">Телефон</div>       <div class="kv-val" id="appUserPhone">—</div>
+        <div class="kv-key">Мероприятие</div>   <div class="kv-val" id="appEventName">—</div>
+        <div class="kv-key">Дата подачи</div>   <div class="kv-val" id="appDate">—</div>
+        <div class="kv-key">Текущий статус</div><div class="kv-val" id="appCurStatus">—</div>
+        <div class="kv-key">Пришёл</div>        <div class="kv-val" id="appAttendance">—</div>
+        <div class="kv-key">Причина откл.</div> <div class="kv-val" id="appRejectReason">—</div>
+        <div class="kv-key">Причина отмены</div><div class="kv-val" id="appCancelReason">—</div>
+      </div>
+      <hr style="border:none;border-top:1px solid var(--border);margin:18px 0">
+      <div class="form-row"><label class="field-label">Новый статус</label>
+        <select class="select-input" id="appNewStatus" onchange="onAppStatusChange()">
+          <option value="PENDING">PENDING</option>
+          <option value="APPROVED">APPROVED</option>
+          <option value="REJECTED">REJECTED</option>
+          <option value="CANCELLED">CANCELLED</option>
+        </select>
+      </div>
+      <div class="form-row" id="appReasonRow" style="display:none">
+        <label class="field-label" id="appReasonLabel">Причина</label>
+        <textarea class="field-input" id="appReason" rows="2" style="margin:0;resize:vertical"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-danger" onclick="confirmDeleteApp()" style="margin-right:auto">Удалить</button>
+      <button class="btn-secondary" onclick="closeModal('modalApp')">Отмена</button>
+      <button class="btn-primary" style="width:auto;padding:10px 24px" onclick="saveAppStatus()">Применить статус</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Просмотр уведомления -->
+<div class="modal-overlay" id="modalViewNotif">
+  <div class="modal">
+    <div class="modal-header"><div class="modal-title">Уведомление</div><button class="modal-close" onclick="closeModal('modalViewNotif')">✕</button></div>
+    <div class="modal-body">
+      <div class="kv">
+        <div class="kv-key">Получатель</div><div class="kv-val" id="notifUser">—</div>
+        <div class="kv-key">Тип</div>       <div class="kv-val" id="notifType">—</div>
+        <div class="kv-key">Заголовок</div> <div class="kv-val" id="notifTitle">—</div>
+        <div class="kv-key">Текст</div>     <div class="kv-val" id="notifBody" style="white-space:pre-wrap"></div>
+        <div class="kv-key">EventId</div>   <div class="kv-val" id="notifEvent">—</div>
+        <div class="kv-key">ChatId</div>    <div class="kv-val" id="notifChat">—</div>
+        <div class="kv-key">Дата</div>      <div class="kv-val" id="notifDate">—</div>
+        <div class="kv-key">Прочитано</div> <div class="kv-val" id="notifRead">—</div>
+        <div class="kv-key">Meta</div>      <div class="kv-val"><pre id="notifMeta" style="font-size:11px;color:var(--text2);white-space:pre-wrap"></pre></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <input type="hidden" id="notifIdHidden">
+      <button class="btn-secondary" onclick="closeModal('modalViewNotif')">Закрыть</button>
+      <button class="btn-danger" onclick="confirmDeleteNotif()">Удалить</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Рассылка -->
+<div class="modal-overlay" id="modalBroadcast">
+  <div class="modal">
+    <div class="modal-header"><div class="modal-title">Рассылка уведомления</div><button class="modal-close" onclick="closeModal('modalBroadcast')">✕</button></div>
+    <div class="modal-body">
+      <div class="form-row"><label class="field-label">Аудитория</label>
+        <select class="select-input" id="bcAudience">
+          <option value="ALL">Все пользователи</option>
+          <option value="VOLUNTEER">Только VOLUNTEER</option>
+          <option value="ORGANIZER">Только ORGANIZER</option>
+          <option value="ADMIN">Только ADMIN</option>
+          <option value="EVENT_APPROVED">APPROVED на мероприятии</option>
+        </select>
+      </div>
+      <div class="form-row" id="bcEventRow" style="display:none"><label class="field-label">Мероприятие</label>
+        <select class="select-input" id="bcEventId"></select>
+      </div>
+      <div class="form-row"><label class="field-label">Тип</label>
+        <select class="select-input" id="bcType">
+          <option value="SYSTEM">SYSTEM</option>
+          <option value="EVENT_CHANGED">EVENT_CHANGED</option>
+        </select>
+      </div>
+      <div class="form-row"><label class="field-label">Заголовок</label><input class="field-input" id="bcTitle" type="text" style="margin:0"></div>
+      <div class="form-row"><label class="field-label">Текст</label><textarea class="field-input" id="bcBody" rows="3" style="margin:0;resize:vertical"></textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="closeModal('modalBroadcast')">Отмена</button>
+      <button class="btn-primary" style="width:auto;padding:10px 24px" onclick="sendBroadcast()">Отправить</button>
+    </div>
+  </div>
+</div>
+
 <!-- MODAL: Просмотр отзыва -->
 <div class="modal-overlay" id="modalViewReview">
   <div class="modal" style="width:420px">
@@ -368,7 +772,27 @@
   </div>
 </div>
 
-<!-- MODAL: Просмотр обратной связи -->
+<!-- MODAL: Просмотр рейтинга -->
+<div class="modal-overlay" id="modalViewRating">
+  <div class="modal" style="width:420px">
+    <div class="modal-header"><div class="modal-title">Оценка волонтёра</div><button class="modal-close" onclick="closeModal('modalViewRating')">✕</button></div>
+    <div class="modal-body">
+      <div class="kv">
+        <div class="kv-key">Волонтёр</div>   <div class="kv-val" id="ratingVol">—</div>
+        <div class="kv-key">Организатор</div><div class="kv-val" id="ratingOrg">—</div>
+        <div class="kv-key">Мероприятие</div><div class="kv-val" id="ratingEv">—</div>
+        <div class="kv-key">Оценка</div>     <div class="kv-val" id="ratingVal">—</div>
+        <div class="kv-key">Дата</div>       <div class="kv-val" id="ratingDate">—</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="closeModal('modalViewRating')">Закрыть</button>
+      <button class="btn-danger" onclick="confirmDeleteRating()">Удалить</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Просмотр feedback -->
 <div class="modal-overlay" id="modalViewFeedback">
   <div class="modal" style="width:420px">
     <div class="modal-header"><div class="modal-title">Обратная связь</div><button class="modal-close" onclick="closeModal('modalViewFeedback')">✕</button></div>
@@ -384,13 +808,64 @@
   </div>
 </div>
 
+<!-- MODAL: Просмотр чата -->
+<div class="modal-overlay" id="modalViewChat">
+  <div class="modal wide">
+    <div class="modal-header"><div class="modal-title">Чат</div><button class="modal-close" onclick="closeModal('modalViewChat')">✕</button></div>
+    <div class="modal-body">
+      <div class="kv">
+        <div class="kv-key">Название</div>   <div class="kv-val" id="chatTitle">—</div>
+        <div class="kv-key">Тип</div>        <div class="kv-val" id="chatType">—</div>
+        <div class="kv-key">Участники</div>  <div class="kv-val" id="chatParticipants">—</div>
+        <div class="kv-key">Обновлён</div>   <div class="kv-val" id="chatUpdated">—</div>
+      </div>
+      <hr style="border:none;border-top:1px solid var(--border);margin:16px 0">
+      <div class="field-label">Последние сообщения (до 30)</div>
+      <div id="chatMessages" style="max-height:280px;overflow-y:auto;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px;font-size:12px;line-height:1.5">Загрузка...</div>
+    </div>
+    <div class="modal-footer">
+      <input type="hidden" id="chatIdHidden">
+      <button class="btn-secondary" onclick="closeModal('modalViewChat')">Закрыть</button>
+      <button class="btn-danger" onclick="confirmDeleteChat()">Удалить чат</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Skill add/edit -->
+<div class="modal-overlay" id="modalEditSkill">
+  <div class="modal" style="width:420px">
+    <div class="modal-header"><div class="modal-title" id="skillModalTitle">Добавить навык</div><button class="modal-close" onclick="closeModal('modalEditSkill')">✕</button></div>
+    <div class="modal-body">
+      <input type="hidden" id="editSkillId">
+      <div class="form-row"><label class="field-label">Название</label><input class="field-input" id="editSkillName" type="text" style="margin:0"></div>
+      <div class="form-row"><label class="field-label">Сортировка</label><input class="field-input" id="editSkillOrder" type="number" value="0" style="margin:0"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="closeModal('modalEditSkill')">Отмена</button>
+      <button class="btn-primary" style="width:auto;padding:10px 24px" onclick="saveSkill()">Сохранить</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Generic confirm delete -->
+<div class="modal-overlay" id="modalConfirm">
+  <div class="modal" style="width:380px">
+    <div class="modal-header"><div class="modal-title text-danger" id="confirmTitle">Подтверждение</div><button class="modal-close" onclick="closeModal('modalConfirm')">✕</button></div>
+    <div class="modal-body"><p id="confirmText" style="color:var(--text2);font-size:13px;line-height:1.6"></p></div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="closeModal('modalConfirm')">Отмена</button>
+      <button class="btn-danger" id="confirmAction">Удалить</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast-container" id="toastContainer"></div>
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged }
     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-  import { getFirestore, collection, getDocs, doc, getDoc, updateDoc, deleteDoc, query, orderBy, limit }
+  import { getFirestore, collection, collectionGroup, getDocs, doc, getDoc, addDoc, setDoc, updateDoc, deleteDoc, query, orderBy, where, limit, Timestamp, serverTimestamp, writeBatch }
     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
   const firebaseConfig = {
@@ -407,18 +882,70 @@
   // ── State ──────────────────────────────────────────────────────────────
   let allUsers    = [];
   let allEvents   = [];
+  let allSeries   = [];
+  let allApps     = [];
+  let allNotifs   = [];
   let allReviews  = [];
+  let allRatings  = [];
+  let allChats    = [];
   let allFeedback = [];
+  let allSkills   = [];
+  let currentAdminUid = null;
+
+  // Фиксированный список категорий мероприятий (совпадает с HomeFragment в Android).
+  // value = то, что хранится в events[].category
+  const FIXED_CATEGORIES = [
+    { label: "Экология",    value: "Экология" },
+    { label: "Животные",    value: "Животные" },
+    { label: "Соц.помощь",  value: "Социальная помощь" },
+    { label: "Культура",    value: "Культура" },
+    { label: "Спорт",       value: "Спорт" },
+    { label: "Образование", value: "Образование" },
+    { label: "Другое",      value: "Другое" },
+  ];
+
+  // edit state
   let editBlockedState   = false;
   let editEventOpenState = false;
-  let currentReviewId  = null;
+  let editEventNotify    = true;
+  let editEventOrig      = null; // snapshot before edit
+  let editUserSkills     = []; // chips
+  let editSeriesDays     = new Set(); // Set<Integer>
+
+  // current selection
+  let currentReviewId   = null;
   let currentFeedbackId = null;
+  let currentRatingId   = null;
+  let currentChatId     = null;
 
   // Cache для имён
   const userNameCache  = {};
   const eventNameCache = {};
 
+  // ── Helpers ────────────────────────────────────────────────────────────
+  const DAY_LABELS = { 1: 'Вс', 2: 'Пн', 3: 'Вт', 4: 'Ср', 5: 'Чт', 6: 'Пт', 7: 'Сб' };
+  const DAY_ORDER  = [2,3,4,5,6,7,1]; // ПН..ВС
+
+  function fmtDate(ts) {
+    if (!ts) return '—';
+    if (typeof ts === 'number') return new Date(ts).toLocaleDateString('ru');
+    if (ts.seconds != null) return new Date(ts.seconds * 1000).toLocaleDateString('ru');
+    return '—';
+  }
+  function fmtDateTime(ts) {
+    if (!ts) return '—';
+    if (typeof ts === 'number') return new Date(ts).toLocaleString('ru');
+    if (ts.seconds != null) return new Date(ts.seconds * 1000).toLocaleString('ru');
+    return '—';
+  }
+  function escapeHtml(s) {
+    if (s == null) return '';
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+  function escapeAttr(s) { return escapeHtml(s).replace(/\n/g, ' '); }
+
   async function getUserName(uid) {
+    if (!uid) return '—';
     if (userNameCache[uid]) return userNameCache[uid];
     try {
       const s = await getDoc(doc(db, "users", uid));
@@ -429,6 +956,7 @@
   }
 
   async function getEventName(eid) {
+    if (!eid) return '—';
     if (eventNameCache[eid]) return eventNameCache[eid];
     try {
       const s = await getDoc(doc(db, "events", eid));
@@ -436,6 +964,15 @@
       eventNameCache[eid] = n;
       return n;
     } catch { return eid; }
+  }
+
+  function toast(msg, type = "success") {
+    const c = document.getElementById("toastContainer");
+    const t = document.createElement("div");
+    t.className = `toast ${type}`;
+    t.textContent = (type === "success" ? "✓ " : "✕ ") + msg;
+    c.appendChild(t);
+    setTimeout(() => t.remove(), 3500);
   }
 
   // ── Auth ───────────────────────────────────────────────────────────────
@@ -447,6 +984,7 @@
       await signOut(auth); showLogin();
       showError("Доступ запрещён. Требуется роль ADMIN."); return;
     }
+    currentAdminUid = user.uid;
     document.getElementById("adminName").textContent = data.fullName || user.email;
     showApp();
     loadAll();
@@ -471,61 +1009,77 @@
 
   // ── Load ───────────────────────────────────────────────────────────────
   async function loadAll() {
-    await Promise.all([loadUsers(), loadEvents(), loadReviews(), loadFeedback()]);
+    rebuildEventCategoryFilter();
+    rebuildCategoryDropdowns();
+    await Promise.all([
+      loadUsers(), loadEvents(), loadSeries(), loadApps(),
+      loadNotifs(), loadReviews(), loadRatings(), loadChats(), loadFeedback(),
+      loadSkills()
+    ]);
     updateStats();
   }
 
-  async function loadUsers() {
-    const snap = await getDocs(collection(db, "users"));
-    allUsers = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-    renderUsers(allUsers);
-  }
+  const safeGet = async (path) => {
+    try { const s = await getDocs(collection(db, path)); return s.docs.map(d => ({ id: d.id, ...d.data() })); }
+    catch (e) { console.warn(`load ${path}:`, e.message); return []; }
+  };
 
-  async function loadEvents() {
-    const snap = await getDocs(collection(db, "events"));
-    allEvents = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-    renderEvents(allEvents);
-  }
-
-  async function loadReviews() {
-    const snap = await getDocs(collection(db, "reviews"));
-    allReviews = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-    await renderReviews(allReviews);
-  }
-
-  async function loadFeedback() {
-    const snap = await getDocs(collection(db, "feedback"));
-    allFeedback = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-    await renderFeedback(allFeedback);
-  }
+  async function loadUsers()      { allUsers    = await safeGet("users");             renderUsers(allUsers); }
+  async function loadEvents()     { allEvents   = await safeGet("events");            renderEvents(allEvents); }
+  async function loadSeries()     { allSeries   = await safeGet("event_series");      renderSeries(allSeries); }
+  async function loadApps()       { allApps     = await safeGet("applications");      await renderApps(allApps); }
+  async function loadNotifs()     { allNotifs   = await safeGet("notifications");     await renderNotifs(allNotifs); }
+  async function loadReviews()    { allReviews  = await safeGet("reviews");           await renderReviews(allReviews); }
+  async function loadRatings()    { allRatings  = await safeGet("volunteer_ratings"); await renderRatings(allRatings); }
+  async function loadChats()      { allChats    = await safeGet("chats");             renderChats(allChats); }
+  async function loadFeedback()   { allFeedback = await safeGet("feedback");          await renderFeedback(allFeedback); }
+  async function loadSkills()     { allSkills   = await safeGet("skills");            renderSkills(allSkills); rebuildSkillsSuggest(); }
 
   function updateStats() {
-    document.getElementById("statUsers").textContent      = allUsers.length;
-    document.getElementById("statEvents").textContent     = allEvents.length;
-    document.getElementById("statOrganizers").textContent = allUsers.filter(u => u.role === "ORGANIZER" || u.role === "ADMIN").length;
-    document.getElementById("statActive").textContent     = allEvents.filter(e => e.status === "ACTIVE").length;
-    document.getElementById("statBlocked").textContent    = allUsers.filter(u => u.isBlocked).length;
-    document.getElementById("statReviews").textContent    = allReviews.length;
-  }
+    setText("statUsers",      allUsers.length);
+    setText("statEvents",     allEvents.length);
+    setText("statOrganizers", allUsers.filter(u => u.role === "ORGANIZER" || u.role === "ADMIN").length);
+    setText("statActive",     allEvents.filter(e => e.status === "ACTIVE").length);
+    setText("statBlocked",    allUsers.filter(u => u.isBlocked).length);
+    setText("statReviews",    allReviews.length);
+    setText("statPending",    allApps.filter(a => a.status === "PENDING").length);
+    setText("statSeries",     allSeries.length);
 
-  // ── Render users ───────────────────────────────────────────────────────
+    setText("cntUsers", allUsers.length);
+    setText("cntEvents", allEvents.length);
+    setText("cntSeries", allSeries.length);
+    setText("cntApps",   allApps.length);
+    setText("cntNotifs", allNotifs.length);
+    setText("cntReviews", allReviews.length);
+    setText("cntRatings", allRatings.length);
+    setText("cntChats",  allChats.length);
+    setText("cntFeedback", allFeedback.length);
+    setText("cntSkills", allSkills.length);
+  }
+  function setText(id, v) { const el = document.getElementById(id); if (el) el.textContent = v; }
+
+  // ── USERS ──────────────────────────────────────────────────────────────
   function renderUsers(users) {
     const tb = document.getElementById("usersTable");
-    if (!users.length) { tb.innerHTML = '<tr><td colspan="6" class="empty">Пользователи не найдены</td></tr>'; return; }
+    if (!users.length) { tb.innerHTML = '<tr><td colspan="7" class="empty">Пользователи не найдены</td></tr>'; return; }
     tb.innerHTML = users.map(u => {
       const regDate = u.createdAt ? new Date(u.createdAt).toLocaleDateString('ru') : '—';
+      const skills = Array.isArray(u.skills) && u.skills.length
+        ? u.skills.slice(0,3).map(s => `<span class="tag">${escapeHtml(s)}</span>`).join('') + (u.skills.length > 3 ? ` <span class="text-muted">+${u.skills.length-3}</span>` : '')
+        : '<span class="text-muted">—</span>';
       return `<tr>
         <td><div class="cell-user">
-          ${u.photoUrl ? `<img class="avatar" src="${u.photoUrl}" onerror="this.style.display='none'">` : `<div class="avatar-placeholder">👤</div>`}
-          <div><div class="cell-user-name">${u.fullName||'—'}</div><div class="cell-user-email">${u.email||''}</div></div>
+          ${u.photoUrl ? `<img class="avatar" src="${escapeAttr(u.photoUrl)}" onerror="this.style.display='none'">` : `<div class="avatar-placeholder">👤</div>`}
+          <div><div class="cell-user-name">${escapeHtml(u.fullName||'—')}</div><div class="cell-user-email">${escapeHtml(u.email||'')}</div></div>
         </div></td>
         <td><span class="badge badge-${(u.role||'volunteer').toLowerCase()}">${u.role||'VOLUNTEER'}</span></td>
-        <td style="color:var(--text2)">${u.phone||'—'}</td>
-        <td style="color:var(--text2)">${regDate}</td>
+        <td class="text-muted">${escapeHtml(u.phone||'—')}</td>
+        <td>${skills}</td>
+        <td class="text-muted">${regDate}</td>
         <td>${u.isBlocked ? '<span class="badge badge-blocked">Заблокирован</span>' : '<span class="badge badge-active">Активен</span>'}</td>
         <td><div class="actions">
-          <button class="btn-icon" onclick="openEditUser('${u.id}')">✏️</button>
-          <button class="btn-icon danger" onclick="openDeleteUser('${u.id}','${(u.fullName||'').replace(/'/g,"\\'")}')">🗑</button>
+          <button class="btn-icon" onclick="openEditUser('${u.id}')" title="Редактировать">✏️</button>
+          <button class="btn-icon danger" onclick="openDeleteUser('${u.id}','${escapeAttr(u.fullName||'')}')" title="Удалить">🗑</button>
         </div></td>
       </tr>`;
     }).join('');
@@ -533,7 +1087,7 @@
 
   let userRoleFilter = '';
   window.filterUsers = q => {
-    const f = q.toLowerCase();
+    const f = (q||'').toLowerCase();
     renderUsers(allUsers.filter(u =>
       ((u.fullName||'').toLowerCase().includes(f) || (u.email||'').toLowerCase().includes(f)) &&
       (!userRoleFilter || u.role === userRoleFilter)));
@@ -543,163 +1097,6 @@
     window.filterUsers(document.querySelector('#page-users .search-input').value);
   };
 
-  // ── Render events ──────────────────────────────────────────────────────
-  function renderEvents(events) {
-    const tb = document.getElementById("eventsTable");
-    if (!events.length) { tb.innerHTML = '<tr><td colspan="7" class="empty">Мероприятия не найдены</td></tr>'; return; }
-    tb.innerHTML = events.map(e => {
-      const dt  = e.dateTime ? new Date(e.dateTime.seconds * 1000).toLocaleDateString('ru') : '—';
-      const avg = e.avgRating ? `⭐ ${Number(e.avgRating).toFixed(1)} (${e.reviewCount||0})` : '—';
-      const statusBadge = e.status === 'ACTIVE' ? 'active' : e.status === 'CLOSED' ? 'closed' : 'deleted';
-      return `<tr>
-        <td style="font-weight:600;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${e.title||'—'}</td>
-        <td style="color:var(--text2)">${e.category||'—'}</td>
-        <td style="color:var(--text2)">${dt}</td>
-        <td style="color:var(--text2)">${e.currentCount||0} / ${e.maxParticipants||0}</td>
-        <td style="color:var(--warning)">${avg}</td>
-        <td><span class="badge badge-${statusBadge}">${e.status||'—'}</span></td>
-        <td><div class="actions">
-          <button class="btn-icon" onclick="openEditEvent('${e.id}')">✏️</button>
-          <button class="btn-icon danger" onclick="openDeleteEvent('${e.id}','${(e.title||'').replace(/'/g,"\\'")}')">🗑</button>
-        </div></td>
-      </tr>`;
-    }).join('');
-  }
-
-  let eventStatusFilter = '';
-  window.filterEvents = q => {
-    const f = q.toLowerCase();
-    renderEvents(allEvents.filter(e =>
-      (e.title||'').toLowerCase().includes(f) &&
-      (!eventStatusFilter || e.status === eventStatusFilter)));
-  };
-  window.filterEventsByStatus = s => {
-    eventStatusFilter = s;
-    window.filterEvents(document.querySelector('#page-events .search-input').value);
-  };
-
-  // ── Render reviews ─────────────────────────────────────────────────────
-  async function renderReviews(reviews) {
-    const tb = document.getElementById("reviewsTable");
-    if (!reviews.length) { tb.innerHTML = '<tr><td colspan="6" class="empty">Отзывов нет</td></tr>'; return; }
-    const rows = await Promise.all(reviews.map(async r => {
-      const uName = await getUserName(r.userId || '');
-      const eName = await getEventName(r.eventId || '');
-      const stars = '⭐'.repeat(r.rating||0);
-      const date  = r.createdAt ? new Date(r.createdAt.seconds*1000).toLocaleDateString('ru') : '—';
-      const comment = r.comment ? `<span class="comment-text" title="${r.comment}">${r.comment}</span>` : '<span style="color:var(--text2)">—</span>';
-      return `<tr>
-        <td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600">${eName}</td>
-        <td style="color:var(--text2)">${uName}</td>
-        <td><span class="stars">${stars}</span> <span style="color:var(--text2);font-size:12px">${r.rating||0}/5</span></td>
-        <td>${comment}</td>
-        <td style="color:var(--text2)">${date}</td>
-        <td><div class="actions">
-          <button class="btn-icon" onclick="openViewReview('${r.id}','${eName.replace(/'/g,"\\'")}','${uName.replace(/'/g,"\\'")}')">👁</button>
-          <button class="btn-icon danger" onclick="quickDeleteReview('${r.id}')">🗑</button>
-        </div></td>
-      </tr>`;
-    }));
-    tb.innerHTML = rows.join('');
-  }
-
-  window.filterReviews = q => {
-    const f = q.toLowerCase();
-    renderReviews(allReviews.filter(r => (r.comment||'').toLowerCase().includes(f)));
-  };
-
-  window.openViewReview = (id, eventName, userName) => {
-    const r = allReviews.find(x => x.id === id);
-    if (!r) return;
-    currentReviewId = id;
-    document.getElementById("reviewEventName").textContent = eventName;
-    document.getElementById("reviewUserName").textContent  = userName;
-    document.getElementById("reviewStars").textContent     = '⭐'.repeat(r.rating||0) + ` (${r.rating||0}/5)`;
-    document.getElementById("reviewComment").textContent   = r.comment || 'Без комментария';
-    openModal("modalViewReview");
-  };
-
-  window.confirmDeleteReview = async () => {
-    if (!currentReviewId) return;
-    try {
-      await deleteDoc(doc(db, "reviews", currentReviewId));
-      allReviews = allReviews.filter(r => r.id !== currentReviewId);
-      await renderReviews(allReviews);
-      updateStats();
-      closeModal("modalViewReview");
-      toast("Отзыв удалён", "success");
-    } catch(e) { toast("Ошибка: " + e.message, "error"); }
-  };
-
-  window.quickDeleteReview = async id => {
-    if (!confirm("Удалить отзыв?")) return;
-    try {
-      await deleteDoc(doc(db, "reviews", id));
-      allReviews = allReviews.filter(r => r.id !== id);
-      await renderReviews(allReviews);
-      updateStats();
-      toast("Отзыв удалён", "success");
-    } catch(e) { toast("Ошибка: " + e.message, "error"); }
-  };
-
-  // ── Render feedback ────────────────────────────────────────────────────
-  async function renderFeedback(feedback) {
-    const tb = document.getElementById("feedbackTable");
-    if (!feedback.length) { tb.innerHTML = '<tr><td colspan="4" class="empty">Сообщений нет</td></tr>'; return; }
-    const rows = await Promise.all(feedback.map(async f => {
-      const uName = await getUserName(f.userId || '');
-      const date  = f.createdAt ? new Date(f.createdAt.seconds*1000).toLocaleString('ru') : '—';
-      const text  = f.text ? `<span class="comment-text" title="${f.text}">${f.text}</span>` : '—';
-      return `<tr>
-        <td style="color:var(--text2)">${uName}</td>
-        <td>${text}</td>
-        <td style="color:var(--text2)">${date}</td>
-        <td><div class="actions">
-          <button class="btn-icon" onclick="openViewFeedback('${f.id}','${uName.replace(/'/g,"\\'")}')">👁</button>
-          <button class="btn-icon danger" onclick="quickDeleteFeedback('${f.id}')">🗑</button>
-        </div></td>
-      </tr>`;
-    }));
-    tb.innerHTML = rows.join('');
-  }
-
-  window.filterFeedback = q => {
-    const f = q.toLowerCase();
-    renderFeedback(allFeedback.filter(fb => (fb.text||'').toLowerCase().includes(f)));
-  };
-
-  window.openViewFeedback = (id, userName) => {
-    const f = allFeedback.find(x => x.id === id);
-    if (!f) return;
-    currentFeedbackId = id;
-    document.getElementById("feedbackUserName").textContent = userName;
-    document.getElementById("feedbackDate").textContent     = f.createdAt ? new Date(f.createdAt.seconds*1000).toLocaleString('ru') : '—';
-    document.getElementById("feedbackText").textContent     = f.text || '—';
-    openModal("modalViewFeedback");
-  };
-
-  window.confirmDeleteFeedback = async () => {
-    if (!currentFeedbackId) return;
-    try {
-      await deleteDoc(doc(db, "feedback", currentFeedbackId));
-      allFeedback = allFeedback.filter(f => f.id !== currentFeedbackId);
-      await renderFeedback(allFeedback);
-      closeModal("modalViewFeedback");
-      toast("Сообщение удалено", "success");
-    } catch(e) { toast("Ошибка: " + e.message, "error"); }
-  };
-
-  window.quickDeleteFeedback = async id => {
-    if (!confirm("Удалить сообщение?")) return;
-    try {
-      await deleteDoc(doc(db, "feedback", id));
-      allFeedback = allFeedback.filter(f => f.id !== id);
-      await renderFeedback(allFeedback);
-      toast("Сообщение удалено", "success");
-    } catch(e) { toast("Ошибка: " + e.message, "error"); }
-  };
-
-  // ── User modals ────────────────────────────────────────────────────────
   window.openEditUser = id => {
     const u = allUsers.find(x => x.id === id);
     if (!u) return;
@@ -707,9 +1104,13 @@
     document.getElementById("editFullName").value  = u.fullName  || '';
     document.getElementById("editPhone").value     = u.phone     || '';
     document.getElementById("editBirthDate").value = u.birthDate || '';
+    document.getElementById("editAboutMe").value   = u.aboutMe   || '';
     document.getElementById("editRole").value      = u.role      || 'VOLUNTEER';
     editBlockedState = !!u.isBlocked;
     document.getElementById("editBlockedToggle").className = "toggle" + (editBlockedState ? " on" : "");
+    editUserSkills = Array.isArray(u.skills) ? [...u.skills] : [];
+    renderEditSkills();
+    rebuildSkillsSuggest();
     openModal("modalEditUser");
   };
 
@@ -718,14 +1119,53 @@
     document.getElementById("editBlockedToggle").className = "toggle" + (editBlockedState ? " on" : "");
   };
 
+  function renderEditSkills() {
+    const area = document.getElementById("editSkillsChips");
+    if (!editUserSkills.length) { area.innerHTML = '<span class="text-muted" style="font-size:12px">Нет навыков</span>'; }
+    else area.innerHTML = editUserSkills.map((s, i) =>
+      `<span class="chip">${escapeHtml(s)}<button onclick="removeSkillAt(${i})">✕</button></span>`).join('');
+  }
+  window.removeSkillAt = i => { editUserSkills.splice(i, 1); renderEditSkills(); rebuildSkillsSuggest(); };
+  window.addCustomSkill = () => {
+    const el = document.getElementById("editSkillAdd");
+    const v = (el.value || '').trim();
+    if (!v) return;
+    if (editUserSkills.length >= 15) { toast("Максимум 15 навыков", "error"); return; }
+    if (editUserSkills.includes(v)) { toast("Уже добавлен", "error"); return; }
+    editUserSkills.push(v);
+    el.value = '';
+    renderEditSkills();
+    rebuildSkillsSuggest();
+  };
+  window.addSkillFromCatalog = name => {
+    if (editUserSkills.includes(name)) return;
+    if (editUserSkills.length >= 15) { toast("Максимум 15 навыков", "error"); return; }
+    editUserSkills.push(name);
+    renderEditSkills();
+    rebuildSkillsSuggest();
+  };
+  function rebuildSkillsSuggest() {
+    const area = document.getElementById("editSkillsSuggest");
+    if (!area) return;
+    const items = allSkills
+      .slice()
+      .sort((a,b) => (a.order||0) - (b.order||0) || (a.name||'').localeCompare(b.name||''))
+      .filter(s => s.name && !editUserSkills.includes(s.name));
+    if (!items.length) { area.innerHTML = ''; return; }
+    area.innerHTML = '<div style="font-size:11px;color:var(--text2);width:100%;margin-bottom:4px">Из каталога:</div>' +
+      items.map(s => `<span class="chip chip-suggest" onclick="addSkillFromCatalog('${escapeAttr(s.name)}')">+ ${escapeHtml(s.name)}</span>`).join('');
+  }
+
   window.saveUser = async () => {
     const id   = document.getElementById("editUserId").value;
     const data = {
       fullName:  document.getElementById("editFullName").value.trim(),
       phone:     document.getElementById("editPhone").value.trim(),
       birthDate: document.getElementById("editBirthDate").value.trim(),
+      aboutMe:   document.getElementById("editAboutMe").value.trim(),
       role:      document.getElementById("editRole").value,
       isBlocked: editBlockedState,
+      skills:    editUserSkills,
     };
     try {
       await updateDoc(doc(db, "users", id), data);
@@ -756,18 +1196,119 @@
     } catch(e) { toast("Ошибка: " + e.message, "error"); }
   };
 
-  // ── Event modals ───────────────────────────────────────────────────────
+  // ── EVENTS ─────────────────────────────────────────────────────────────
+  function renderEvents(events) {
+    const tb = document.getElementById("eventsTable");
+    if (!events.length) { tb.innerHTML = '<tr><td colspan="7" class="empty">Мероприятия не найдены</td></tr>'; return; }
+    tb.innerHTML = events.map(e => {
+      const dt  = e.dateTime ? new Date(e.dateTime.seconds * 1000).toLocaleString('ru', { dateStyle:'short', timeStyle:'short' }) : '—';
+      const avg = e.avgRating ? `⭐ ${Number(e.avgRating).toFixed(1)} (${e.reviewCount||0})` : '—';
+      const statusBadge = e.status === 'ACTIVE' ? 'active' : e.status === 'CLOSED' ? 'closed' : 'deleted';
+      return `<tr>
+        <td style="font-weight:600;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escapeHtml(e.title||'—')}</td>
+        <td class="text-muted">${escapeHtml(e.category||'—')}</td>
+        <td class="text-muted">${dt}</td>
+        <td class="text-muted">${e.currentCount||0} / ${e.maxParticipants||0}</td>
+        <td style="color:var(--warning)">${avg}</td>
+        <td><span class="badge badge-${statusBadge}">${e.status||'—'}</span></td>
+        <td><div class="actions">
+          <button class="btn-icon" onclick="openEditEvent('${e.id}')" title="Редактировать">✏️</button>
+          <button class="btn-icon danger" onclick="openDeleteEvent('${e.id}','${escapeAttr(e.title||'')}')" title="Удалить">🗑</button>
+        </div></td>
+      </tr>`;
+    }).join('');
+  }
+
+  let eventStatusFilter = '';
+  let eventCategoryFilter = '';
+  window.filterEvents = q => {
+    const f = (q||'').toLowerCase();
+    renderEvents(allEvents.filter(e =>
+      (e.title||'').toLowerCase().includes(f) &&
+      (!eventStatusFilter || e.status === eventStatusFilter) &&
+      (!eventCategoryFilter || (e.category||'') === eventCategoryFilter)));
+  };
+  window.filterEventsByStatus = s => {
+    eventStatusFilter = s;
+    window.filterEvents(document.querySelector('#page-events .search-input').value);
+  };
+  window.filterEventsByCategory = c => {
+    eventCategoryFilter = c;
+    window.filterEvents(document.querySelector('#page-events .search-input').value);
+  };
+
+  function rebuildEventCategoryFilter() {
+    const sel = document.getElementById("eventsCategoryFilter");
+    if (!sel) return;
+    const current = sel.value;
+    sel.innerHTML = '<option value="">Все категории</option>' +
+      FIXED_CATEGORIES.map(c => `<option value="${escapeAttr(c.value)}">${escapeHtml(c.label)}</option>`).join('');
+    sel.value = current;
+  }
+
+  function rebuildCategoryDropdowns() {
+    const opts = '<option value="">— Без категории —</option>' +
+      FIXED_CATEGORIES.map(c => `<option value="${escapeAttr(c.value)}">${escapeHtml(c.label)}</option>`).join('');
+    for (const id of ["editEventCategory", "editSeriesCategory"]) {
+      const sel = document.getElementById(id);
+      if (sel) { const cur = sel.value; sel.innerHTML = opts; sel.value = cur; }
+    }
+  }
+
+  function dateTimeToInputValue(ts) {
+    if (!ts || ts.seconds == null) return '';
+    const d = new Date(ts.seconds * 1000);
+    const pad = n => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  }
+  function inputValueToTimestamp(v) {
+    if (!v) return null;
+    const d = new Date(v);
+    if (isNaN(d.getTime())) return null;
+    return Timestamp.fromDate(d);
+  }
+
+  window.openCreateEvent = () => {
+    editEventOrig = null;
+    document.getElementById("evModalTitle").textContent = "Создать мероприятие";
+    document.getElementById("editEventId").value = "";
+    document.getElementById("editEventTitle").value = "";
+    document.getElementById("editEventDesc").value = "";
+    document.getElementById("editEventLocation").value = "";
+    document.getElementById("editEventMax").value = 50;
+    document.getElementById("editEventImage").value = "";
+    document.getElementById("editEventCategory").value = "";
+    document.getElementById("editEventDateTime").value = "";
+    document.getElementById("editEventStatus").value = "ACTIVE";
+    editEventOpenState = true;
+    document.getElementById("editEventOpenToggle").className = "toggle on";
+    editEventNotify = true;
+    document.getElementById("editEventNotifyToggle").className = "toggle on";
+    document.getElementById("editEventNotifyRow").style.display = 'none';
+    rebuildCategoryDropdowns();
+    openModal("modalEditEvent");
+  };
+
   window.openEditEvent = id => {
     const e = allEvents.find(x => x.id === id);
     if (!e) return;
+    editEventOrig = JSON.parse(JSON.stringify(e));
+    document.getElementById("evModalTitle").textContent = "Редактировать мероприятие";
     document.getElementById("editEventId").value       = id;
     document.getElementById("editEventTitle").value    = e.title       || '';
     document.getElementById("editEventDesc").value     = e.description || '';
     document.getElementById("editEventLocation").value = e.location    || '';
-    document.getElementById("editEventMax").value      = e.maxParticipants || '';
+    document.getElementById("editEventMax").value      = e.maxParticipants || 50;
+    document.getElementById("editEventImage").value    = e.imageUrl    || '';
     document.getElementById("editEventStatus").value   = e.status      || 'ACTIVE';
+    document.getElementById("editEventDateTime").value = dateTimeToInputValue(e.dateTime);
     editEventOpenState = !!e.isOpen;
     document.getElementById("editEventOpenToggle").className = "toggle" + (editEventOpenState ? " on" : "");
+    editEventNotify = true;
+    document.getElementById("editEventNotifyToggle").className = "toggle on";
+    document.getElementById("editEventNotifyRow").style.display = '';
+    rebuildCategoryDropdowns();
+    document.getElementById("editEventCategory").value = e.category || '';
     openModal("modalEditEvent");
   };
 
@@ -775,28 +1316,96 @@
     editEventOpenState = !editEventOpenState;
     document.getElementById("editEventOpenToggle").className = "toggle" + (editEventOpenState ? " on" : "");
   };
+  window.toggleEventNotify = () => {
+    editEventNotify = !editEventNotify;
+    document.getElementById("editEventNotifyToggle").className = "toggle" + (editEventNotify ? " on" : "");
+  };
 
   window.saveEvent = async () => {
-    const id     = document.getElementById("editEventId").value;
+    const id = document.getElementById("editEventId").value;
     const maxVal = parseInt(document.getElementById("editEventMax").value);
     if (isNaN(maxVal) || maxVal < 1 || maxVal > 500) { toast("Макс. участников: от 1 до 500", "error"); return; }
+    const title = document.getElementById("editEventTitle").value.trim();
+    if (!title) { toast("Название обязательно", "error"); return; }
+    const dtVal = inputValueToTimestamp(document.getElementById("editEventDateTime").value);
+
     const data = {
-      title:           document.getElementById("editEventTitle").value.trim(),
+      title,
       description:     document.getElementById("editEventDesc").value.trim(),
       location:        document.getElementById("editEventLocation").value.trim(),
+      category:        document.getElementById("editEventCategory").value || null,
       maxParticipants: maxVal,
+      imageUrl:        document.getElementById("editEventImage").value.trim() || null,
       status:          document.getElementById("editEventStatus").value,
       isOpen:          editEventOpenState,
     };
+    if (dtVal) data.dateTime = dtVal;
+
     try {
-      await updateDoc(doc(db, "events", id), data);
-      const idx = allEvents.findIndex(e => e.id === id);
-      if (idx >= 0) allEvents[idx] = { ...allEvents[idx], ...data };
+      if (id) {
+        await updateDoc(doc(db, "events", id), data);
+        const idx = allEvents.findIndex(e => e.id === id);
+        if (idx >= 0) allEvents[idx] = { ...allEvents[idx], ...data };
+        if (editEventNotify && editEventOrig) await maybeNotifyEventChanged(id, editEventOrig, { ...editEventOrig, ...data });
+      } else {
+        const newDoc = {
+          ...data,
+          organizerId: currentAdminUid,
+          currentCount: 0,
+          avgRating: 0,
+          reviewCount: 0,
+          weekly: false,
+          createdAt: Timestamp.now(),
+        };
+        const ref = await addDoc(collection(db, "events"), newDoc);
+        allEvents.push({ id: ref.id, ...newDoc });
+      }
       renderEvents(allEvents);
+      updateStats();
       closeModal("modalEditEvent");
-      toast("Мероприятие обновлено", "success");
+      toast(id ? "Мероприятие обновлено" : "Мероприятие создано", "success");
     } catch(e) { toast("Ошибка: " + e.message, "error"); }
   };
+
+  async function maybeNotifyEventChanged(eventId, before, after) {
+    const dtChanged   = JSON.stringify(before.dateTime||null) !== JSON.stringify(after.dateTime||null);
+    const locChanged  = (before.location||'') !== (after.location||'');
+    const statChanged = (before.status||'') !== (after.status||'');
+    if (!dtChanged && !locChanged && !statChanged) return;
+
+    let approved = [];
+    try {
+      const snap = await getDocs(query(collection(db, "applications"),
+        where("eventId", "==", eventId), where("status", "==", "APPROVED")));
+      approved = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    } catch(e) { console.warn(e); }
+    if (!approved.length) return;
+
+    const parts = [];
+    if (statChanged && after.status === 'CLOSED')  parts.push("Мероприятие закрыто");
+    if (statChanged && after.status === 'DELETED') parts.push("Мероприятие удалено");
+    if (dtChanged)  parts.push("изменена дата/время");
+    if (locChanged) parts.push("изменено место");
+    const body = (after.title||'Мероприятие') + ": " + (parts.length ? parts.join('; ') : 'обновлено');
+
+    const meta = {};
+    if (dtChanged)  { meta.oldDate = before.dateTime?.seconds || null; meta.newDate = after.dateTime?.seconds || null; }
+    if (locChanged) { meta.oldLocation = before.location || null;       meta.newLocation = after.location || null; }
+    if (statChanged){ meta.oldStatus = before.status || null;           meta.newStatus = after.status || null; }
+
+    const tasks = approved.map(a => addDoc(collection(db, "notifications"), {
+      userId: a.userId,
+      type: "EVENT_CHANGED",
+      title: "Изменения в мероприятии",
+      body,
+      eventId,
+      isRead: false,
+      createdAt: Timestamp.now(),
+      meta,
+    }));
+    try { await Promise.all(tasks); toast(`Уведомлены ${approved.length} участник(ов)`, "success"); }
+    catch(e) { toast("Уведомления частично не отправлены: " + e.message, "error"); }
+  }
 
   window.openDeleteEvent = (id, name) => {
     document.getElementById("deleteEventId").value = id;
@@ -816,7 +1425,812 @@
     } catch(e) { toast("Ошибка: " + e.message, "error"); }
   };
 
-  // ── Helpers ────────────────────────────────────────────────────────────
+  // ── SERIES ─────────────────────────────────────────────────────────────
+  function renderSeries(series) {
+    const tb = document.getElementById("seriesTable");
+    if (!series.length) { tb.innerHTML = '<tr><td colspan="7" class="empty">Серий нет</td></tr>'; return; }
+    tb.innerHTML = series.map(s => {
+      const days = Array.isArray(s.daysOfWeek) ? s.daysOfWeek.slice().sort((a,b) => DAY_ORDER.indexOf(a)-DAY_ORDER.indexOf(b)).map(d => DAY_LABELS[d]||d).join(', ') : '—';
+      const time = (s.hourOfDay != null && s.minute != null) ? `${String(s.hourOfDay).padStart(2,'0')}:${String(s.minute).padStart(2,'0')}` : '—';
+      const statBadge = s.status === 'ACTIVE' ? 'active' : s.status === 'INACTIVE' ? 'inactive' : 'deleted';
+      return `<tr>
+        <td style="font-weight:600">${escapeHtml(s.title||'—')}</td>
+        <td class="text-muted">${escapeHtml(s.category||'—')}</td>
+        <td class="text-muted">${days}</td>
+        <td class="text-muted">${time}</td>
+        <td class="text-muted">${s.maxParticipants||0}</td>
+        <td><span class="badge badge-${statBadge}">${s.status||'—'}</span></td>
+        <td><div class="actions">
+          <button class="btn-icon" onclick="openEditSeries('${s.id}')" title="Редактировать">✏️</button>
+          <button class="btn-icon danger" onclick="openDeleteSeries('${s.id}','${escapeAttr(s.title||'')}')" title="Удалить">🗑</button>
+        </div></td>
+      </tr>`;
+    }).join('');
+  }
+
+  let seriesStatusFilter = '';
+  window.filterSeries = q => {
+    const f = (q||'').toLowerCase();
+    renderSeries(allSeries.filter(s =>
+      (s.title||'').toLowerCase().includes(f) &&
+      (!seriesStatusFilter || s.status === seriesStatusFilter)));
+  };
+  window.filterSeriesByStatus = s => { seriesStatusFilter = s; window.filterSeries(document.querySelector('#page-series .search-input').value); };
+
+  function renderSeriesDayPicker(selected) {
+    const wrap = document.getElementById("editSeriesDays");
+    editSeriesDays = new Set(selected || []);
+    wrap.innerHTML = DAY_ORDER.map(d => {
+      const on = editSeriesDays.has(d);
+      return `<button type="button" class="chip ${on?'chip-suggest':''}" style="cursor:pointer" onclick="toggleSeriesDay(${d})">${DAY_LABELS[d]}</button>`;
+    }).join('');
+  }
+  window.toggleSeriesDay = d => {
+    if (editSeriesDays.has(d)) editSeriesDays.delete(d); else editSeriesDays.add(d);
+    renderSeriesDayPicker([...editSeriesDays]);
+  };
+
+  window.openCreateSeries = () => {
+    document.getElementById("srModalTitle").textContent = "Создать серию";
+    document.getElementById("editSeriesId").value = "";
+    document.getElementById("editSeriesTitle").value = "";
+    document.getElementById("editSeriesDesc").value = "";
+    document.getElementById("editSeriesLocation").value = "";
+    document.getElementById("editSeriesMax").value = 50;
+    document.getElementById("editSeriesImage").value = "";
+    document.getElementById("editSeriesStatus").value = "ACTIVE";
+    document.getElementById("editSeriesTime").value = "10:00";
+    document.getElementById("editSeriesStartsAt").value = "";
+    renderSeriesDayPicker([]);
+    rebuildCategoryDropdowns();
+    document.getElementById("editSeriesCategory").value = "";
+    openModal("modalEditSeries");
+  };
+
+  window.openEditSeries = id => {
+    const s = allSeries.find(x => x.id === id);
+    if (!s) return;
+    document.getElementById("srModalTitle").textContent = "Редактировать серию";
+    document.getElementById("editSeriesId").value = id;
+    document.getElementById("editSeriesTitle").value = s.title || '';
+    document.getElementById("editSeriesDesc").value = s.description || '';
+    document.getElementById("editSeriesLocation").value = s.location || '';
+    document.getElementById("editSeriesMax").value = s.maxParticipants || 50;
+    document.getElementById("editSeriesImage").value = s.imageUrl || '';
+    document.getElementById("editSeriesStatus").value = s.status || 'ACTIVE';
+    const hh = s.hourOfDay != null ? String(s.hourOfDay).padStart(2,'0') : '10';
+    const mm = s.minute != null   ? String(s.minute).padStart(2,'0')   : '00';
+    document.getElementById("editSeriesTime").value = `${hh}:${mm}`;
+    if (s.startsAt && s.startsAt.seconds) {
+      const d = new Date(s.startsAt.seconds*1000);
+      document.getElementById("editSeriesStartsAt").value = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    } else document.getElementById("editSeriesStartsAt").value = "";
+    renderSeriesDayPicker(s.daysOfWeek || []);
+    rebuildCategoryDropdowns();
+    document.getElementById("editSeriesCategory").value = s.category || '';
+    openModal("modalEditSeries");
+  };
+
+  window.saveSeries = async () => {
+    const id = document.getElementById("editSeriesId").value;
+    const title = document.getElementById("editSeriesTitle").value.trim();
+    if (!title) { toast("Название обязательно", "error"); return; }
+    const time = (document.getElementById("editSeriesTime").value || '10:00').split(':');
+    const data = {
+      title,
+      description: document.getElementById("editSeriesDesc").value.trim(),
+      location: document.getElementById("editSeriesLocation").value.trim(),
+      category: document.getElementById("editSeriesCategory").value || null,
+      maxParticipants: parseInt(document.getElementById("editSeriesMax").value) || 0,
+      imageUrl: document.getElementById("editSeriesImage").value.trim() || null,
+      status: document.getElementById("editSeriesStatus").value,
+      weekly: true,
+      daysOfWeek: [...editSeriesDays].sort(),
+      hourOfDay: parseInt(time[0]) || 0,
+      minute: parseInt(time[1]) || 0,
+      updatedAt: Timestamp.now(),
+    };
+    const startsStr = document.getElementById("editSeriesStartsAt").value;
+    if (startsStr) data.startsAt = Timestamp.fromDate(new Date(startsStr + "T00:00:00"));
+    try {
+      if (id) {
+        await updateDoc(doc(db, "event_series", id), data);
+        const idx = allSeries.findIndex(s => s.id === id);
+        if (idx >= 0) allSeries[idx] = { ...allSeries[idx], ...data };
+      } else {
+        const doc2 = { ...data, organizerId: currentAdminUid, createdAt: Timestamp.now() };
+        const ref = await addDoc(collection(db, "event_series"), doc2);
+        allSeries.push({ id: ref.id, ...doc2 });
+      }
+      renderSeries(allSeries);
+      updateStats();
+      closeModal("modalEditSeries");
+      toast(id ? "Серия обновлена" : "Серия создана", "success");
+    } catch(e) { toast("Ошибка: " + e.message, "error"); }
+  };
+
+  window.openDeleteSeries = (id, name) => {
+    document.getElementById("deleteSeriesId").value = id;
+    document.getElementById("deleteSeriesName").textContent = name;
+    openModal("modalDeleteSeries");
+  };
+  window.confirmDeleteSeries = async () => {
+    const id = document.getElementById("deleteSeriesId").value;
+    try {
+      await deleteDoc(doc(db, "event_series", id));
+      allSeries = allSeries.filter(s => s.id !== id);
+      renderSeries(allSeries);
+      updateStats();
+      closeModal("modalDeleteSeries");
+      toast("Серия удалена", "success");
+    } catch(e) { toast("Ошибка: " + e.message, "error"); }
+  };
+
+  // ── APPLICATIONS ───────────────────────────────────────────────────────
+  async function renderApps(apps) {
+    const tb = document.getElementById("appsTable");
+    if (!apps.length) { tb.innerHTML = '<tr><td colspan="6" class="empty">Заявок нет</td></tr>'; return; }
+    const rows = await Promise.all(apps.map(async a => {
+      const uName = a.userName || await getUserName(a.userId);
+      const eName = await getEventName(a.eventId);
+      const date  = a.appliedAt ? new Date(a.appliedAt.seconds*1000).toLocaleString('ru') : '—';
+      const att   = a.attendance === true ? '✓' : (a.attendance === false ? '✗' : '—');
+      const statusKey = (a.status||'pending').toLowerCase();
+      return `<tr>
+        <td><div class="cell-user-name">${escapeHtml(uName)}</div><div class="cell-user-email">${escapeHtml(a.userEmail||'')}</div></td>
+        <td class="cell-ellipsis" title="${escapeAttr(eName)}">${escapeHtml(eName)}</td>
+        <td class="text-muted">${date}</td>
+        <td><span class="badge badge-${statusKey}">${a.status||'—'}</span></td>
+        <td class="text-muted" style="text-align:center">${att}</td>
+        <td><div class="actions">
+          <button class="btn-icon" onclick="openApp('${a.id}')" title="Открыть">👁</button>
+          <button class="btn-icon success" onclick="quickApproveApp('${a.id}')" title="Одобрить">✓</button>
+          <button class="btn-icon danger" onclick="openApp('${a.id}', 'REJECTED')" title="Отклонить">✗</button>
+        </div></td>
+      </tr>`;
+    }));
+    tb.innerHTML = rows.join('');
+  }
+
+  let appStatusFilter = '';
+  window.filterApps = q => {
+    const f = (q||'').toLowerCase();
+    renderApps(allApps.filter(a => {
+      const u = (a.userName||'').toLowerCase();
+      const m = (eventNameCache[a.eventId]||'').toLowerCase();
+      return (u.includes(f) || m.includes(f)) && (!appStatusFilter || a.status === appStatusFilter);
+    }));
+  };
+  window.filterAppsByStatus = s => { appStatusFilter = s; window.filterApps(document.querySelector('#page-applications .search-input').value); };
+
+  window.openApp = async (id, preselect) => {
+    const a = allApps.find(x => x.id === id);
+    if (!a) return;
+    document.getElementById("appId").value = id;
+    document.getElementById("appUserName").textContent  = a.userName || await getUserName(a.userId);
+    document.getElementById("appUserEmail").textContent = a.userEmail || '—';
+    document.getElementById("appUserPhone").textContent = a.userPhone || '—';
+    document.getElementById("appEventName").textContent = await getEventName(a.eventId);
+    document.getElementById("appDate").textContent      = a.appliedAt ? new Date(a.appliedAt.seconds*1000).toLocaleString('ru') : '—';
+    document.getElementById("appCurStatus").innerHTML   = `<span class="badge badge-${(a.status||'pending').toLowerCase()}">${a.status||'—'}</span>`;
+    document.getElementById("appAttendance").textContent = a.attendance === true ? 'Да' : (a.attendance === false ? 'Нет' : 'Не отмечено');
+    document.getElementById("appRejectReason").textContent = a.rejectReason || '—';
+    document.getElementById("appCancelReason").textContent = a.cancelReason || '—';
+    document.getElementById("appNewStatus").value = preselect || a.status || 'PENDING';
+    document.getElementById("appReason").value = '';
+    onAppStatusChange();
+    openModal("modalApp");
+  };
+
+  window.onAppStatusChange = () => {
+    const s = document.getElementById("appNewStatus").value;
+    const row = document.getElementById("appReasonRow");
+    const lbl = document.getElementById("appReasonLabel");
+    if (s === 'REJECTED') { row.style.display = ''; lbl.textContent = 'Причина отклонения *'; }
+    else if (s === 'CANCELLED') { row.style.display = ''; lbl.textContent = 'Причина отмены *'; }
+    else row.style.display = 'none';
+  };
+
+  window.quickApproveApp = async id => {
+    const a = allApps.find(x => x.id === id);
+    if (!a) return;
+    try {
+      await updateDoc(doc(db, "applications", id), { status: 'APPROVED' });
+      a.status = 'APPROVED';
+      await createAppStatusNotification(a, 'APPROVED', null);
+      await renderApps(allApps);
+      updateStats();
+      toast("Заявка одобрена", "success");
+    } catch(e) { toast("Ошибка: " + e.message, "error"); }
+  };
+
+  window.saveAppStatus = async () => {
+    const id = document.getElementById("appId").value;
+    const a = allApps.find(x => x.id === id);
+    if (!a) return;
+    const newStatus = document.getElementById("appNewStatus").value;
+    const reason = document.getElementById("appReason").value.trim();
+    const upd = { status: newStatus };
+    if (newStatus === 'REJECTED')  { if (!reason) { toast("Укажите причину отклонения", "error"); return; } upd.rejectReason  = reason; }
+    if (newStatus === 'CANCELLED') { if (!reason) { toast("Укажите причину отмены", "error"); return; }     upd.cancelReason = reason; }
+    try {
+      await updateDoc(doc(db, "applications", id), upd);
+      Object.assign(a, upd);
+      await createAppStatusNotification(a, newStatus, reason);
+      await renderApps(allApps);
+      updateStats();
+      closeModal("modalApp");
+      toast("Статус заявки обновлён", "success");
+    } catch(e) { toast("Ошибка: " + e.message, "error"); }
+  };
+
+  async function createAppStatusNotification(appObj, status, reason) {
+    if (!appObj.userId) return;
+    const eventTitle = await getEventName(appObj.eventId);
+    let title, body;
+    switch (status) {
+      case 'APPROVED':
+        title = "Заявка принята";
+        body  = "Вы записаны на мероприятие: " + eventTitle;
+        break;
+      case 'REJECTED':
+        title = "Заявка отклонена";
+        body  = "Мероприятие: " + eventTitle + (reason ? "\nПричина: " + reason : "");
+        break;
+      case 'CANCELLED':
+        title = "Заявка отменена";
+        body  = eventTitle + (reason ? "\nПричина: " + reason : "");
+        break;
+      default:
+        title = "Статус заявки изменён";
+        body  = eventTitle + " → " + status;
+    }
+    const meta = { status };
+    if (reason) meta.reason = reason;
+    try {
+      await addDoc(collection(db, "notifications"), {
+        userId: appObj.userId,
+        type: "APPLICATION_STATUS",
+        title, body,
+        eventId: appObj.eventId || null,
+        applicationId: appObj.id || null,
+        isRead: false,
+        createdAt: Timestamp.now(),
+        meta,
+      });
+    } catch(e) { console.warn("notif failed", e); }
+  }
+
+  window.confirmDeleteApp = async () => {
+    const id = document.getElementById("appId").value;
+    if (!confirm("Удалить заявку из Firestore?")) return;
+    try {
+      await deleteDoc(doc(db, "applications", id));
+      allApps = allApps.filter(a => a.id !== id);
+      await renderApps(allApps);
+      updateStats();
+      closeModal("modalApp");
+      toast("Заявка удалена", "success");
+    } catch(e) { toast("Ошибка: " + e.message, "error"); }
+  };
+
+  // ── NOTIFICATIONS ──────────────────────────────────────────────────────
+  async function renderNotifs(notifs) {
+    const tb = document.getElementById("notifsTable");
+    if (!notifs.length) { tb.innerHTML = '<tr><td colspan="7" class="empty">Уведомлений нет</td></tr>'; return; }
+    const sorted = notifs.slice().sort((a,b) => (b.createdAt?.seconds||0) - (a.createdAt?.seconds||0));
+    const rows = await Promise.all(sorted.map(async n => {
+      const u = await getUserName(n.userId);
+      const date = fmtDateTime(n.createdAt);
+      return `<tr>
+        <td class="cell-ellipsis" title="${escapeAttr(u)}">${escapeHtml(u)}</td>
+        <td><span class="badge badge-volunteer">${escapeHtml(n.type||'—')}</span></td>
+        <td class="cell-ellipsis" title="${escapeAttr(n.title||'')}">${escapeHtml(n.title||'—')}</td>
+        <td class="cell-ellipsis text-muted" title="${escapeAttr(n.body||'')}">${escapeHtml(n.body||'')}</td>
+        <td class="text-muted">${date}</td>
+        <td>${n.isRead ? '<span class="badge badge-read">read</span>' : '<span class="badge badge-unread">new</span>'}</td>
+        <td><div class="actions">
+          <button class="btn-icon" onclick="openNotif('${n.id}')" title="Открыть">👁</button>
+          <button class="btn-icon danger" onclick="quickDeleteNotif('${n.id}')" title="Удалить">🗑</button>
+        </div></td>
+      </tr>`;
+    }));
+    tb.innerHTML = rows.join('');
+  }
+
+  let notifTypeFilter = '';
+  window.filterNotifs = q => {
+    const f = (q||'').toLowerCase();
+    renderNotifs(allNotifs.filter(n =>
+      ((n.title||'').toLowerCase().includes(f) || (n.body||'').toLowerCase().includes(f)) &&
+      (!notifTypeFilter || n.type === notifTypeFilter)));
+  };
+  window.filterNotifsByType = t => { notifTypeFilter = t; window.filterNotifs(document.querySelector('#page-notifications .search-input').value); };
+
+  window.openNotif = async id => {
+    const n = allNotifs.find(x => x.id === id);
+    if (!n) return;
+    document.getElementById("notifIdHidden").value = id;
+    document.getElementById("notifUser").textContent  = await getUserName(n.userId);
+    document.getElementById("notifType").textContent  = n.type || '—';
+    document.getElementById("notifTitle").textContent = n.title || '—';
+    document.getElementById("notifBody").textContent  = n.body || '';
+    document.getElementById("notifEvent").textContent = n.eventId || '—';
+    document.getElementById("notifChat").textContent  = n.chatId || '—';
+    document.getElementById("notifDate").textContent  = fmtDateTime(n.createdAt);
+    document.getElementById("notifRead").textContent  = n.isRead ? 'да' : 'нет';
+    document.getElementById("notifMeta").textContent  = n.meta ? JSON.stringify(n.meta, null, 2) : '—';
+    openModal("modalViewNotif");
+  };
+
+  window.confirmDeleteNotif = async () => {
+    const id = document.getElementById("notifIdHidden").value;
+    try {
+      await deleteDoc(doc(db, "notifications", id));
+      allNotifs = allNotifs.filter(n => n.id !== id);
+      await renderNotifs(allNotifs);
+      updateStats();
+      closeModal("modalViewNotif");
+      toast("Уведомление удалено", "success");
+    } catch(e) { toast("Ошибка: " + e.message, "error"); }
+  };
+  window.quickDeleteNotif = async id => {
+    if (!confirm("Удалить уведомление?")) return;
+    try {
+      await deleteDoc(doc(db, "notifications", id));
+      allNotifs = allNotifs.filter(n => n.id !== id);
+      await renderNotifs(allNotifs);
+      updateStats();
+      toast("Уведомление удалено", "success");
+    } catch(e) { toast("Ошибка: " + e.message, "error"); }
+  };
+
+  window.openBroadcast = () => {
+    document.getElementById("bcAudience").value = "ALL";
+    document.getElementById("bcType").value = "SYSTEM";
+    document.getElementById("bcTitle").value = "";
+    document.getElementById("bcBody").value = "";
+    const sel = document.getElementById("bcEventId");
+    sel.innerHTML = allEvents.map(e => `<option value="${e.id}">${escapeHtml(e.title||e.id)}</option>`).join('');
+    document.getElementById("bcEventRow").style.display = 'none';
+    document.getElementById("bcAudience").onchange = () => {
+      document.getElementById("bcEventRow").style.display = document.getElementById("bcAudience").value === 'EVENT_APPROVED' ? '' : 'none';
+    };
+    openModal("modalBroadcast");
+  };
+
+  window.sendBroadcast = async () => {
+    const audience = document.getElementById("bcAudience").value;
+    const type     = document.getElementById("bcType").value;
+    const title    = document.getElementById("bcTitle").value.trim();
+    const body     = document.getElementById("bcBody").value.trim();
+    const eventId  = document.getElementById("bcEventId").value;
+    if (!title || !body) { toast("Заполните заголовок и текст", "error"); return; }
+
+    let targets = [];
+    if (audience === 'ALL') targets = allUsers.map(u => u.id);
+    else if (['VOLUNTEER','ORGANIZER','ADMIN'].includes(audience)) targets = allUsers.filter(u => u.role === audience).map(u => u.id);
+    else if (audience === 'EVENT_APPROVED') {
+      try {
+        const snap = await getDocs(query(collection(db, "applications"),
+          where("eventId", "==", eventId), where("status", "==", "APPROVED")));
+        targets = snap.docs.map(d => d.data().userId).filter(Boolean);
+      } catch(e) { toast("Ошибка загрузки получателей: " + e.message, "error"); return; }
+    }
+    if (!targets.length) { toast("Получателей нет", "error"); return; }
+
+    try {
+      const tasks = targets.map(uid => addDoc(collection(db, "notifications"), {
+        userId: uid, type, title, body,
+        eventId: audience === 'EVENT_APPROVED' ? eventId : null,
+        isRead: false,
+        createdAt: Timestamp.now(),
+      }));
+      await Promise.all(tasks);
+      toast(`Отправлено: ${targets.length}`, "success");
+      closeModal("modalBroadcast");
+      await loadNotifs();
+      updateStats();
+    } catch(e) { toast("Ошибка: " + e.message, "error"); }
+  };
+
+  // ── REVIEWS ────────────────────────────────────────────────────────────
+  async function renderReviews(reviews) {
+    const tb = document.getElementById("reviewsTable");
+    if (!reviews.length) { tb.innerHTML = '<tr><td colspan="6" class="empty">Отзывов нет</td></tr>'; return; }
+    const rows = await Promise.all(reviews.map(async r => {
+      const uName = await getUserName(r.userId || '');
+      const eName = await getEventName(r.eventId || '');
+      const stars = '⭐'.repeat(r.rating||0);
+      const date  = r.createdAt ? new Date(r.createdAt.seconds*1000).toLocaleDateString('ru') : '—';
+      const comment = r.comment ? `<span class="comment-text" title="${escapeAttr(r.comment)}">${escapeHtml(r.comment)}</span>` : '<span class="text-muted">—</span>';
+      return `<tr>
+        <td class="cell-ellipsis" style="font-weight:600" title="${escapeAttr(eName)}">${escapeHtml(eName)}</td>
+        <td class="text-muted">${escapeHtml(uName)}</td>
+        <td><span class="stars">${stars}</span> <span class="text-muted" style="font-size:12px">${r.rating||0}/5</span></td>
+        <td>${comment}</td>
+        <td class="text-muted">${date}</td>
+        <td><div class="actions">
+          <button class="btn-icon" onclick="openViewReview('${r.id}','${escapeAttr(eName)}','${escapeAttr(uName)}')" title="Открыть">👁</button>
+          <button class="btn-icon danger" onclick="quickDeleteReview('${r.id}')" title="Удалить">🗑</button>
+        </div></td>
+      </tr>`;
+    }));
+    tb.innerHTML = rows.join('');
+  }
+
+  window.filterReviews = q => {
+    const f = (q||'').toLowerCase();
+    renderReviews(allReviews.filter(r => (r.comment||'').toLowerCase().includes(f)));
+  };
+
+  window.openViewReview = (id, eventName, userName) => {
+    const r = allReviews.find(x => x.id === id);
+    if (!r) return;
+    currentReviewId = id;
+    document.getElementById("reviewEventName").textContent = eventName;
+    document.getElementById("reviewUserName").textContent  = userName;
+    document.getElementById("reviewStars").textContent     = '⭐'.repeat(r.rating||0) + ` (${r.rating||0}/5)`;
+    document.getElementById("reviewComment").textContent   = r.comment || 'Без комментария';
+    openModal("modalViewReview");
+  };
+
+  window.confirmDeleteReview = async () => {
+    if (!currentReviewId) return;
+    try {
+      await deleteDoc(doc(db, "reviews", currentReviewId));
+      allReviews = allReviews.filter(r => r.id !== currentReviewId);
+      await renderReviews(allReviews);
+      updateStats();
+      closeModal("modalViewReview");
+      toast("Отзыв удалён", "success");
+    } catch(e) { toast("Ошибка: " + e.message, "error"); }
+  };
+  window.quickDeleteReview = async id => {
+    if (!confirm("Удалить отзыв?")) return;
+    try {
+      await deleteDoc(doc(db, "reviews", id));
+      allReviews = allReviews.filter(r => r.id !== id);
+      await renderReviews(allReviews);
+      updateStats();
+      toast("Отзыв удалён", "success");
+    } catch(e) { toast("Ошибка: " + e.message, "error"); }
+  };
+
+  // ── RATINGS (volunteer_ratings) ────────────────────────────────────────
+  async function renderRatings(rs) {
+    const tb = document.getElementById("ratingsTable");
+    if (!rs.length) { tb.innerHTML = '<tr><td colspan="6" class="empty">Оценок нет</td></tr>'; return; }
+    const rows = await Promise.all(rs.map(async r => {
+      const v = await getUserName(r.volunteerId);
+      const o = await getUserName(r.organizerId);
+      const e = await getEventName(r.eventId);
+      const date = fmtDate(r.createdAt);
+      return `<tr>
+        <td>${escapeHtml(v)}</td>
+        <td class="text-muted">${escapeHtml(o)}</td>
+        <td class="cell-ellipsis text-muted" title="${escapeAttr(e)}">${escapeHtml(e)}</td>
+        <td><span class="stars">${'⭐'.repeat(Math.round(r.rating||0))}</span> ${Number(r.rating||0).toFixed(1)}</td>
+        <td class="text-muted">${date}</td>
+        <td><div class="actions">
+          <button class="btn-icon" onclick="openRating('${r.id}')" title="Открыть">👁</button>
+          <button class="btn-icon danger" onclick="quickDeleteRating('${r.id}')" title="Удалить">🗑</button>
+        </div></td>
+      </tr>`;
+    }));
+    tb.innerHTML = rows.join('');
+  }
+
+  window.filterRatings = q => {
+    const f = (q||'').toLowerCase();
+    renderRatings(allRatings.filter(r => {
+      const v = (userNameCache[r.volunteerId]||'').toLowerCase();
+      const o = (userNameCache[r.organizerId]||'').toLowerCase();
+      const e = (eventNameCache[r.eventId]||'').toLowerCase();
+      return v.includes(f) || o.includes(f) || e.includes(f);
+    }));
+  };
+
+  window.openRating = async id => {
+    const r = allRatings.find(x => x.id === id);
+    if (!r) return;
+    currentRatingId = id;
+    document.getElementById("ratingVol").textContent  = await getUserName(r.volunteerId);
+    document.getElementById("ratingOrg").textContent  = await getUserName(r.organizerId);
+    document.getElementById("ratingEv").textContent   = await getEventName(r.eventId);
+    document.getElementById("ratingVal").textContent  = (r.rating||0) + ' / 5';
+    document.getElementById("ratingDate").textContent = fmtDate(r.createdAt);
+    openModal("modalViewRating");
+  };
+
+  async function recalcVolunteerAvg(volunteerId) {
+    if (!volunteerId) return;
+    try {
+      const snap = await getDocs(query(collection(db, "volunteer_ratings"), where("volunteerId", "==", volunteerId)));
+      let sum = 0, cnt = 0;
+      snap.forEach(d => { const v = d.data().rating; if (typeof v === 'number') { sum += v; cnt++; } });
+      const avg = cnt > 0 ? sum / cnt : 0;
+      await updateDoc(doc(db, "users", volunteerId), { avgVolunteerRating: avg });
+      const idx = allUsers.findIndex(u => u.id === volunteerId);
+      if (idx >= 0) allUsers[idx].avgVolunteerRating = avg;
+    } catch(e) { console.warn("recalc failed", e); }
+  }
+
+  window.confirmDeleteRating = async () => {
+    if (!currentRatingId) return;
+    const r = allRatings.find(x => x.id === currentRatingId);
+    try {
+      await deleteDoc(doc(db, "volunteer_ratings", currentRatingId));
+      allRatings = allRatings.filter(x => x.id !== currentRatingId);
+      if (r) await recalcVolunteerAvg(r.volunteerId);
+      await renderRatings(allRatings);
+      updateStats();
+      closeModal("modalViewRating");
+      toast("Оценка удалена, средний рейтинг пересчитан", "success");
+    } catch(e) { toast("Ошибка: " + e.message, "error"); }
+  };
+  window.quickDeleteRating = async id => {
+    if (!confirm("Удалить оценку и пересчитать средний рейтинг?")) return;
+    const r = allRatings.find(x => x.id === id);
+    try {
+      await deleteDoc(doc(db, "volunteer_ratings", id));
+      allRatings = allRatings.filter(x => x.id !== id);
+      if (r) await recalcVolunteerAvg(r.volunteerId);
+      await renderRatings(allRatings);
+      updateStats();
+      toast("Оценка удалена", "success");
+    } catch(e) { toast("Ошибка: " + e.message, "error"); }
+  };
+
+  // ── CHATS ──────────────────────────────────────────────────────────────
+  function renderChats(chats) {
+    const tb = document.getElementById("chatsTable");
+    if (!chats.length) { tb.innerHTML = '<tr><td colspan="6" class="empty">Чатов нет</td></tr>'; return; }
+    tb.innerHTML = chats.map(c => {
+      const title = c.title || (c.participants ? c.participants.slice(0,2).join(' ↔ ') : c.id);
+      const type = c.chatType || (c.participants && c.participants.length > 2 ? 'group' : 'direct');
+      const upd = typeof c.updatedAt === 'number' ? new Date(c.updatedAt).toLocaleString('ru')
+                : (c.updatedAt && c.updatedAt.seconds ? new Date(c.updatedAt.seconds*1000).toLocaleString('ru') : '—');
+      return `<tr>
+        <td class="cell-ellipsis" style="font-weight:600">${escapeHtml(title)}</td>
+        <td><span class="badge badge-${type==='group'?'organizer':'volunteer'}">${type}</span></td>
+        <td class="text-muted">${(c.participants||[]).length}</td>
+        <td class="cell-ellipsis text-muted" title="${escapeAttr(c.lastMessage||'')}">${escapeHtml(c.lastMessage||'')}</td>
+        <td class="text-muted">${upd}</td>
+        <td><div class="actions">
+          <button class="btn-icon" onclick="openChat('${c.id}')" title="Открыть">👁</button>
+          <button class="btn-icon danger" onclick="quickDeleteChat('${c.id}')" title="Удалить">🗑</button>
+        </div></td>
+      </tr>`;
+    }).join('');
+  }
+
+  let chatTypeFilter = '';
+  window.filterChats = q => {
+    const f = (q||'').toLowerCase();
+    renderChats(allChats.filter(c => {
+      const tt = (c.title||'').toLowerCase();
+      const tp = c.chatType || (c.participants && c.participants.length > 2 ? 'group' : 'direct');
+      return tt.includes(f) && (!chatTypeFilter || tp === chatTypeFilter);
+    }));
+  };
+  window.filterChatsByType = t => { chatTypeFilter = t; window.filterChats(document.querySelector('#page-chats .search-input').value); };
+
+  window.openChat = async id => {
+    const c = allChats.find(x => x.id === id);
+    if (!c) return;
+    currentChatId = id;
+    document.getElementById("chatIdHidden").value = id;
+    document.getElementById("chatTitle").textContent = c.title || (c.participants ? c.participants.slice(0,2).join(' ↔ ') : c.id);
+    const type = c.chatType || (c.participants && c.participants.length > 2 ? 'group' : 'direct');
+    document.getElementById("chatType").textContent = type;
+    const parts = await Promise.all((c.participants||[]).map(async p => `<span class="tag">${escapeHtml(await getUserName(p))}</span>`));
+    document.getElementById("chatParticipants").innerHTML = parts.join(' ') || '—';
+    document.getElementById("chatUpdated").textContent = typeof c.updatedAt === 'number' ? new Date(c.updatedAt).toLocaleString('ru')
+      : (c.updatedAt && c.updatedAt.seconds ? new Date(c.updatedAt.seconds*1000).toLocaleString('ru') : '—');
+
+    const msgEl = document.getElementById("chatMessages");
+    msgEl.innerHTML = "Загрузка...";
+    try {
+      const snap = await getDocs(query(collection(db, `chats/${id}/messages`), orderBy("createdAt", "desc"), limit(30)));
+      const msgs = await Promise.all(snap.docs.reverse().map(async d => {
+        const m = d.data();
+        const who = await getUserName(m.senderId);
+        const t = typeof m.createdAt === 'number' ? new Date(m.createdAt).toLocaleString('ru') : '—';
+        const txt = m.deleted ? '<i style="color:var(--text2)">[удалено]</i>' : escapeHtml(m.text||'');
+        return `<div style="margin-bottom:8px"><strong>${escapeHtml(who)}</strong> <span style="color:var(--text2);font-size:11px">${t}</span><br>${txt}</div>`;
+      }));
+      msgEl.innerHTML = msgs.join('') || '<span class="text-muted">Сообщений нет</span>';
+    } catch(e) { msgEl.innerHTML = `<span class="text-danger">Ошибка: ${escapeHtml(e.message)}</span>`; }
+    openModal("modalViewChat");
+  };
+
+  async function deleteChatCascade(chatId) {
+    try {
+      const msgSnap = await getDocs(collection(db, `chats/${chatId}/messages`));
+      const batch = writeBatch(db);
+      msgSnap.forEach(d => batch.delete(d.ref));
+      await batch.commit();
+    } catch(e) { console.warn("cascade delete messages:", e.message); }
+    await deleteDoc(doc(db, "chats", chatId));
+  }
+
+  window.confirmDeleteChat = async () => {
+    if (!currentChatId) return;
+    if (!confirm("Удалить чат вместе со всеми сообщениями?")) return;
+    try {
+      await deleteChatCascade(currentChatId);
+      allChats = allChats.filter(c => c.id !== currentChatId);
+      renderChats(allChats);
+      updateStats();
+      closeModal("modalViewChat");
+      toast("Чат удалён", "success");
+    } catch(e) { toast("Ошибка: " + e.message, "error"); }
+  };
+  window.quickDeleteChat = async id => {
+    if (!confirm("Удалить чат вместе со всеми сообщениями?")) return;
+    try {
+      await deleteChatCascade(id);
+      allChats = allChats.filter(c => c.id !== id);
+      renderChats(allChats);
+      updateStats();
+      toast("Чат удалён", "success");
+    } catch(e) { toast("Ошибка: " + e.message, "error"); }
+  };
+
+  // ── FEEDBACK ───────────────────────────────────────────────────────────
+  async function renderFeedback(feedback) {
+    const tb = document.getElementById("feedbackTable");
+    if (!feedback.length) { tb.innerHTML = '<tr><td colspan="4" class="empty">Сообщений нет</td></tr>'; return; }
+    const rows = await Promise.all(feedback.map(async f => {
+      const uName = await getUserName(f.userId || '');
+      const date  = f.createdAt ? new Date(f.createdAt.seconds*1000).toLocaleString('ru') : '—';
+      const text  = f.text ? `<span class="comment-text" title="${escapeAttr(f.text)}">${escapeHtml(f.text)}</span>` : '—';
+      return `<tr>
+        <td class="text-muted">${escapeHtml(uName)}</td>
+        <td>${text}</td>
+        <td class="text-muted">${date}</td>
+        <td><div class="actions">
+          <button class="btn-icon" onclick="openViewFeedback('${f.id}','${escapeAttr(uName)}')" title="Открыть">👁</button>
+          <button class="btn-icon danger" onclick="quickDeleteFeedback('${f.id}')" title="Удалить">🗑</button>
+        </div></td>
+      </tr>`;
+    }));
+    tb.innerHTML = rows.join('');
+  }
+
+  window.filterFeedback = q => {
+    const f = (q||'').toLowerCase();
+    renderFeedback(allFeedback.filter(fb => (fb.text||'').toLowerCase().includes(f)));
+  };
+  window.openViewFeedback = (id, userName) => {
+    const f = allFeedback.find(x => x.id === id);
+    if (!f) return;
+    currentFeedbackId = id;
+    document.getElementById("feedbackUserName").textContent = userName;
+    document.getElementById("feedbackDate").textContent     = f.createdAt ? new Date(f.createdAt.seconds*1000).toLocaleString('ru') : '—';
+    document.getElementById("feedbackText").textContent     = f.text || '—';
+    openModal("modalViewFeedback");
+  };
+  window.confirmDeleteFeedback = async () => {
+    if (!currentFeedbackId) return;
+    try {
+      await deleteDoc(doc(db, "feedback", currentFeedbackId));
+      allFeedback = allFeedback.filter(f => f.id !== currentFeedbackId);
+      await renderFeedback(allFeedback);
+      updateStats();
+      closeModal("modalViewFeedback");
+      toast("Сообщение удалено", "success");
+    } catch(e) { toast("Ошибка: " + e.message, "error"); }
+  };
+  window.quickDeleteFeedback = async id => {
+    if (!confirm("Удалить сообщение?")) return;
+    try {
+      await deleteDoc(doc(db, "feedback", id));
+      allFeedback = allFeedback.filter(f => f.id !== id);
+      await renderFeedback(allFeedback);
+      updateStats();
+      toast("Сообщение удалено", "success");
+    } catch(e) { toast("Ошибка: " + e.message, "error"); }
+  };
+
+  // ── SKILLS CATALOG ─────────────────────────────────────────────────────
+  function renderSkills(skills) {
+    const tb = document.getElementById("skillsTable");
+    if (!skills.length) { tb.innerHTML = '<tr><td colspan="4" class="empty">Каталог пуст. Добавьте первый навык.</td></tr>'; return; }
+    const sorted = skills.slice().sort((a,b) => (a.order||0) - (b.order||0) || (a.name||'').localeCompare(b.name||''));
+    tb.innerHTML = sorted.map(s => `<tr>
+      <td style="font-weight:600">${escapeHtml(s.name||'—')}</td>
+      <td class="text-muted">${s.order ?? 0}</td>
+      <td class="text-muted">${fmtDate(s.createdAt)}</td>
+      <td><div class="actions">
+        <button class="btn-icon" onclick="openEditSkill('${s.id}')" title="Редактировать">✏️</button>
+        <button class="btn-icon danger" onclick="quickDeleteSkill('${s.id}','${escapeAttr(s.name||'')}')" title="Удалить">🗑</button>
+      </div></td>
+    </tr>`).join('');
+  }
+  window.filterSkills = q => {
+    const f = (q||'').toLowerCase();
+    renderSkills(allSkills.filter(s => (s.name||'').toLowerCase().includes(f)));
+  };
+
+  window.openCreateSkill = () => {
+    document.getElementById("skillModalTitle").textContent = "Добавить навык";
+    document.getElementById("editSkillId").value = "";
+    document.getElementById("editSkillName").value = "";
+    document.getElementById("editSkillOrder").value = (allSkills.length || 0) * 10;
+    openModal("modalEditSkill");
+  };
+  window.openEditSkill = id => {
+    const s = allSkills.find(x => x.id === id);
+    if (!s) return;
+    document.getElementById("skillModalTitle").textContent = "Редактировать навык";
+    document.getElementById("editSkillId").value = id;
+    document.getElementById("editSkillName").value = s.name || '';
+    document.getElementById("editSkillOrder").value = s.order ?? 0;
+    openModal("modalEditSkill");
+  };
+  window.saveSkill = async () => {
+    const id = document.getElementById("editSkillId").value;
+    const name = document.getElementById("editSkillName").value.trim();
+    const order = parseInt(document.getElementById("editSkillOrder").value) || 0;
+    if (!name) { toast("Название обязательно", "error"); return; }
+    try {
+      if (id) {
+        await updateDoc(doc(db, "skills", id), { name, order });
+        const idx = allSkills.findIndex(s => s.id === id);
+        if (idx >= 0) allSkills[idx] = { ...allSkills[idx], name, order };
+      } else {
+        const data = { name, order, createdAt: Timestamp.now() };
+        const ref = await addDoc(collection(db, "skills"), data);
+        allSkills.push({ id: ref.id, ...data });
+      }
+      renderSkills(allSkills);
+      rebuildSkillsSuggest();
+      updateStats();
+      closeModal("modalEditSkill");
+      toast(id ? "Навык обновлён" : "Навык добавлен", "success");
+    } catch(e) { toast("Ошибка: " + e.message, "error"); }
+  };
+  window.quickDeleteSkill = async (id, name) => {
+    if (!confirm(`Удалить навык "${name}" из каталога?`)) return;
+    try {
+      await deleteDoc(doc(db, "skills", id));
+      allSkills = allSkills.filter(s => s.id !== id);
+      renderSkills(allSkills);
+      rebuildSkillsSuggest();
+      updateStats();
+      toast("Навык удалён", "success");
+    } catch(e) { toast("Ошибка: " + e.message, "error"); }
+  };
+
+  // ── Seed defaults (skills) ─────────────────────────────────────────────
+  const DEFAULT_SKILLS = [
+    "Коммуникация","Работа в команде","Организация мероприятий","Первая помощь",
+    "Работа с детьми","Работа с пожилыми","Работа с животными","Эко-волонтёрство",
+    "Логистика","Фандрайзинг","SMM","Фото/видео","Дизайн","Копирайтинг",
+    "Перевод","Психологическая поддержка"
+  ];
+
+  window.seedSkills = async () => {
+    if (!confirm("Импортировать 16 базовых навыков? Дубликаты по имени будут пропущены.")) return;
+    const existing = new Set(allSkills.map(s => (s.name||'').toLowerCase()));
+    const toAdd = DEFAULT_SKILLS.filter(n => !existing.has(n.toLowerCase()));
+    if (!toAdd.length) { toast("Все дефолтные навыки уже есть", "success"); return; }
+    try {
+      const tasks = toAdd.map((name, i) => addDoc(collection(db, "skills"), {
+        name, order: (allSkills.length + i) * 10, createdAt: Timestamp.now()
+      }));
+      const refs = await Promise.all(tasks);
+      refs.forEach((ref, i) => allSkills.push({ id: ref.id, name: toAdd[i], order: (allSkills.length + i) * 10 }));
+      renderSkills(allSkills);
+      rebuildSkillsSuggest();
+      updateStats();
+      toast(`Добавлено ${toAdd.length} навыков`, "success");
+    } catch(e) { toast("Ошибка: " + e.message, "error"); }
+  };
+
+  // ── UI ────────────────────────────────────────────────────────────────
   function showLogin() { document.getElementById("loginScreen").style.display = "flex"; document.getElementById("app").style.display = "none"; }
   function showApp()   { document.getElementById("loginScreen").style.display = "none"; document.getElementById("app").style.display = "block"; }
   function showError(msg) { document.getElementById("loginError").textContent = msg; }
@@ -834,15 +2248,6 @@
   document.querySelectorAll('.modal-overlay').forEach(el => {
     el.addEventListener('click', e => { if (e.target === el) el.classList.remove('open'); });
   });
-
-  function toast(msg, type = "success") {
-    const c = document.getElementById("toastContainer");
-    const t = document.createElement("div");
-    t.className = `toast ${type}`;
-    t.textContent = (type === "success" ? "✓ " : "✕ ") + msg;
-    c.appendChild(t);
-    setTimeout(() => t.remove(), 3500);
-  }
 
   document.getElementById("loginPassword").addEventListener("keydown", e => {
     if (e.key === "Enter") window.doLogin();
