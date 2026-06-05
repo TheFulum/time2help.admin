@@ -429,7 +429,6 @@
         <div class="page-title">Уведомления <span>//</span> Лента</div>
         <div class="page-actions"><button class="btn-create" onclick="openBroadcast()">+ Рассылка</button></div>
       </div>
-      <div class="info-banner">Рассылка создаёт записи в коллекции <code>notifications</code> для выбранной аудитории. Пуши не используются — это in-app лента.</div>
       <div class="table-wrap">
         <div class="table-toolbar">
           <input class="search-input" type="text" placeholder="Поиск по заголовку/тексту..." oninput="filterNotifs(this.value)">
@@ -471,7 +470,6 @@
     <!-- RATINGS -->
     <div class="page" id="page-ratings">
       <div class="page-header"><div class="page-title">Рейтинги волонтёров <span>//</span> От организаторов</div></div>
-      <div class="info-banner">Оценки от организаторов. При удалении оценки <strong>avgVolunteerRating</strong> у пользователя автоматически пересчитывается.</div>
       <div class="table-wrap">
         <div class="table-toolbar">
           <input class="search-input" type="text" placeholder="Поиск..." oninput="filterRatings(this.value)">
@@ -515,7 +513,6 @@
           <button class="btn-create" onclick="openCreateSkill()">+ Добавить навык</button>
         </div>
       </div>
-      <div class="info-banner">Каталог навыков для подсказок в профиле волонтёра. Сохраняется в коллекции <code>skills</code>. Поле <code>users[].skills</code> при этом остаётся произвольным — пользователь может добавить и свой навык. <strong>Импорт дефолтов</strong> добавит 16 базовых навыков, не дублируя существующие.</div>
       <div class="table-wrap">
         <div class="table-toolbar">
           <input class="search-input" type="text" placeholder="Поиск..." oninput="filterSkills(this.value)">
