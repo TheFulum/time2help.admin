@@ -82,6 +82,27 @@
   .stat-card.c8::after { background: #0ea5e9; }
   .stat-label { font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
   .stat-value { font-family: var(--font-head); font-size: 26px; }
+  .stat-sub { margin-top: 6px; font-size: 11px; color: var(--text2); }
+  .dashboard-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .dashboard-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+  .dashboard-panel-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 16px 18px 12px; border-bottom: 1px solid rgba(226,229,239,.65); }
+  .dashboard-panel-title { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text2); }
+  .dashboard-panel-meta { font-size: 11px; color: var(--text2); }
+  .dashboard-panel-body { padding: 16px 18px 18px; }
+  .dash-bars { display: flex; flex-direction: column; gap: 14px; }
+  .dash-bar-row { display: grid; grid-template-columns: 120px 1fr auto; gap: 12px; align-items: center; }
+  .dash-bar-label { font-size: 12px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .dash-bar-track { position: relative; height: 10px; border-radius: 999px; background: var(--surface2); overflow: hidden; }
+  .dash-bar-fill { height: 100%; border-radius: inherit; transform-origin: left center; transition: width 220ms cubic-bezier(0.23, 1, 0.32, 1); }
+  .dash-bar-value { min-width: 28px; text-align: right; font-size: 12px; color: var(--text2); }
+  .dash-list { display: flex; flex-direction: column; gap: 10px; }
+  .dash-list-item { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 12px 14px; border: 1px solid rgba(226,229,239,.75); background: linear-gradient(180deg, rgba(245,246,250,.88), rgba(255,255,255,.96)); border-radius: 12px; transition: transform 160ms ease-out, border-color 160ms ease-out, box-shadow 160ms ease-out; }
+  .dash-list-item:hover { transform: translateY(-1px); border-color: rgba(91,78,245,.22); box-shadow: 0 8px 24px rgba(26,29,46,.04); }
+  .dash-list-main { min-width: 0; }
+  .dash-list-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .dash-list-sub { font-size: 11px; color: var(--text2); line-height: 1.45; }
+  .dash-list-side { flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+  .dashboard-empty { padding: 28px 10px; text-align: center; color: var(--text2); font-size: 12px; }
 
   .info-banner { background: rgba(91,78,245,.06); border: 1px solid rgba(91,78,245,.2); border-left: 3px solid var(--accent); border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; font-size: 12px; color: var(--text2); line-height: 1.6; }
   .info-banner strong { color: var(--accent); }
@@ -186,6 +207,15 @@
 
   .tag { display: inline-block; padding: 2px 8px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; font-size: 11px; margin: 2px 2px 0 0; color: var(--text2); }
 
+  @media (max-width: 1180px) {
+    .dashboard-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 760px) {
+    .dash-bar-row { grid-template-columns: 1fr; gap: 6px; }
+    .dash-bar-value { text-align: left; }
+  }
+
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
@@ -242,14 +272,52 @@
     <div class="page active" id="page-dashboard">
       <div class="page-header"><div class="page-title">Дашборд <span>//</span> Обзор</div></div>
       <div class="stats-grid">
-        <div class="stat-card c1"><div class="stat-label">Пользователей</div><div class="stat-value" id="statUsers">—</div></div>
-        <div class="stat-card c2"><div class="stat-label">Мероприятий</div><div class="stat-value" id="statEvents">—</div></div>
-        <div class="stat-card c3"><div class="stat-label">Активных</div><div class="stat-value" id="statActive">—</div></div>
-        <div class="stat-card c4"><div class="stat-label">Организаторов</div><div class="stat-value" id="statOrganizers">—</div></div>
-        <div class="stat-card c5"><div class="stat-label">Заблокировано</div><div class="stat-value" id="statBlocked">—</div></div>
-        <div class="stat-card c6"><div class="stat-label">Отзывов</div><div class="stat-value" id="statReviews">—</div></div>
-        <div class="stat-card c7"><div class="stat-label">Заявок PENDING</div><div class="stat-value" id="statPending">—</div></div>
-        <div class="stat-card c8"><div class="stat-label">Серий</div><div class="stat-value" id="statSeries">—</div></div>
+        <div class="stat-card c1"><div class="stat-label">Пользователей</div><div class="stat-value" id="statUsers">—</div><div class="stat-sub" id="statUsersSub">—</div></div>
+        <div class="stat-card c2"><div class="stat-label">Мероприятий</div><div class="stat-value" id="statEvents">—</div><div class="stat-sub" id="statEventsSub">—</div></div>
+        <div class="stat-card c3"><div class="stat-label">Активных</div><div class="stat-value" id="statActive">—</div><div class="stat-sub" id="statActiveSub">—</div></div>
+        <div class="stat-card c4"><div class="stat-label">Организаторов</div><div class="stat-value" id="statOrganizers">—</div><div class="stat-sub" id="statOrganizersSub">—</div></div>
+        <div class="stat-card c5"><div class="stat-label">Заблокировано</div><div class="stat-value" id="statBlocked">—</div><div class="stat-sub" id="statBlockedSub">—</div></div>
+        <div class="stat-card c6"><div class="stat-label">Отзывов</div><div class="stat-value" id="statReviews">—</div><div class="stat-sub" id="statReviewsSub">—</div></div>
+        <div class="stat-card c7"><div class="stat-label">Заявок PENDING</div><div class="stat-value" id="statPending">—</div><div class="stat-sub" id="statPendingSub">—</div></div>
+        <div class="stat-card c8"><div class="stat-label">Серий</div><div class="stat-value" id="statSeries">—</div><div class="stat-sub" id="statSeriesSub">—</div></div>
+      </div>
+      <div class="dashboard-grid">
+        <div class="dashboard-panel">
+          <div class="dashboard-panel-header">
+            <div class="dashboard-panel-title">Роли пользователей</div>
+            <div class="dashboard-panel-meta" id="dashUsersMeta">—</div>
+          </div>
+          <div class="dashboard-panel-body">
+            <div class="dash-bars" id="dashUsersBars"></div>
+          </div>
+        </div>
+        <div class="dashboard-panel">
+          <div class="dashboard-panel-header">
+            <div class="dashboard-panel-title">Статусы заявок</div>
+            <div class="dashboard-panel-meta" id="dashAppsMeta">—</div>
+          </div>
+          <div class="dashboard-panel-body">
+            <div class="dash-bars" id="dashAppsBars"></div>
+          </div>
+        </div>
+        <div class="dashboard-panel">
+          <div class="dashboard-panel-header">
+            <div class="dashboard-panel-title">Последние мероприятия</div>
+            <div class="dashboard-panel-meta" id="dashEventsMeta">—</div>
+          </div>
+          <div class="dashboard-panel-body">
+            <div class="dash-list" id="dashRecentEvents"></div>
+          </div>
+        </div>
+        <div class="dashboard-panel">
+          <div class="dashboard-panel-header">
+            <div class="dashboard-panel-title">Последние уведомления</div>
+            <div class="dashboard-panel-meta" id="dashNotifsMeta">—</div>
+          </div>
+          <div class="dashboard-panel-body">
+            <div class="dash-list" id="dashRecentNotifs"></div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1018,8 +1086,125 @@
     setText("cntRatings", allRatings.length);
     setText("cntChats",  allChats.length);
     setText("cntSkills", allSkills.length);
+
+    const activeEvents = allEvents.filter(e => e.status === "ACTIVE").length;
+    const blockedUsers = allUsers.filter(u => u.isBlocked).length;
+    const organizerCount = allUsers.filter(u => u.role === "ORGANIZER").length;
+    const adminCount = allUsers.filter(u => u.role === "ADMIN").length;
+    const openEvents = allEvents.filter(e => e.isOpen !== false && e.status !== "CLOSED" && e.status !== "DELETED").length;
+    const unreadNotifs = allNotifs.filter(n => !n.isRead).length;
+
+    setText("statUsersSub", `${Math.max(0, allUsers.length - blockedUsers)} активных`);
+    setText("statEventsSub", `${openEvents} с открытым набором`);
+    setText("statActiveSub", `${Math.max(0, allEvents.length - activeEvents)} вне ACTIVE`);
+    setText("statOrganizersSub", `${adminCount} admin, ${organizerCount} organizer`);
+    setText("statBlockedSub", blockedUsers ? "требуют внимания" : "без блокировок");
+    setText("statReviewsSub", `${allRatings.length} рейтингов волонтёров`);
+    setText("statPendingSub", `${unreadNotifs} непрочитанных уведомлений`);
+    setText("statSeriesSub", allSeries.length ? "повторяющиеся события активны" : "серий пока нет");
+
+    renderDashboard();
   }
   function setText(id, v) { const el = document.getElementById(id); if (el) el.textContent = v; }
+
+  function dashboardTimestampMs(value) {
+    if (!value) return 0;
+    if (typeof value === "number") return value;
+    if (typeof value?.toMillis === "function") return value.toMillis();
+    if (value.seconds != null) return value.seconds * 1000;
+    const parsed = Date.parse(value);
+    return Number.isNaN(parsed) ? 0 : parsed;
+  }
+
+  function renderDashboardBars(targetId, items, emptyText = "Данных пока нет") {
+    const root = document.getElementById(targetId);
+    if (!root) return;
+    const max = Math.max(...items.map(i => i.value), 0);
+    if (!max) {
+      root.innerHTML = `<div class="dashboard-empty">${emptyText}</div>`;
+      return;
+    }
+    root.innerHTML = items.map(item => {
+      const width = Math.max(6, Math.round((item.value / max) * 100));
+      return `
+        <div class="dash-bar-row">
+          <div class="dash-bar-label">${escapeHtml(item.label)}</div>
+          <div class="dash-bar-track"><div class="dash-bar-fill" style="width:${width}%;background:${item.color}"></div></div>
+          <div class="dash-bar-value">${item.value}</div>
+        </div>`;
+    }).join('');
+  }
+
+  function renderDashboardList(targetId, items, emptyText = "Записей пока нет") {
+    const root = document.getElementById(targetId);
+    if (!root) return;
+    if (!items.length) {
+      root.innerHTML = `<div class="dashboard-empty">${emptyText}</div>`;
+      return;
+    }
+    root.innerHTML = items.map(item => `
+      <div class="dash-list-item">
+        <div class="dash-list-main">
+          <div class="dash-list-title">${escapeHtml(item.title)}</div>
+          <div class="dash-list-sub">${escapeHtml(item.subtitle)}</div>
+        </div>
+        <div class="dash-list-side">
+          ${item.badge ? item.badge : ""}
+          <div class="dash-list-sub">${escapeHtml(item.side || "")}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderDashboard() {
+    const volunteers = allUsers.filter(u => (u.role || "VOLUNTEER") === "VOLUNTEER").length;
+    const organizers = allUsers.filter(u => u.role === "ORGANIZER").length;
+    const admins = allUsers.filter(u => u.role === "ADMIN").length;
+    const blocked = allUsers.filter(u => u.isBlocked).length;
+    renderDashboardBars("dashUsersBars", [
+      { label: "Волонтёры", value: volunteers, color: "var(--accent)" },
+      { label: "Организаторы", value: organizers, color: "var(--accent2)" },
+      { label: "Админы", value: admins, color: "#8b5cf6" },
+      { label: "Заблокированы", value: blocked, color: "var(--danger)" },
+    ], "Пользователи ещё не добавлены");
+    setText("dashUsersMeta", `${allUsers.length} всего`);
+
+    const pending = allApps.filter(a => a.status === "PENDING").length;
+    const approved = allApps.filter(a => a.status === "APPROVED").length;
+    const rejected = allApps.filter(a => a.status === "REJECTED").length;
+    const cancelled = allApps.filter(a => a.status === "CANCELLED").length;
+    renderDashboardBars("dashAppsBars", [
+      { label: "Pending", value: pending, color: "var(--warning)" },
+      { label: "Approved", value: approved, color: "var(--success)" },
+      { label: "Rejected", value: rejected, color: "var(--danger)" },
+      { label: "Cancelled", value: cancelled, color: "var(--text2)" },
+    ], "Заявок пока нет");
+    setText("dashAppsMeta", `${allApps.length} всего`);
+
+    const recentEvents = allEvents.slice()
+      .sort((a, b) => dashboardTimestampMs(b.createdAt || b.dateTime) - dashboardTimestampMs(a.createdAt || a.dateTime))
+      .slice(0, 4)
+      .map(e => ({
+        title: e.title || "Без названия",
+        subtitle: `${e.category || "Без категории"} • ${fmtDateTime(e.dateTime || e.createdAt)}`,
+        side: `${e.currentCount || 0}/${e.maxParticipants || 0}`,
+        badge: `<span class="badge ${e.status === "ACTIVE" ? "badge-active" : e.status === "CLOSED" ? "badge-closed" : "badge-inactive"}">${escapeHtml(e.status || "—")}</span>`
+      }));
+    renderDashboardList("dashRecentEvents", recentEvents, "Мероприятий пока нет");
+    setText("dashEventsMeta", "4 последних");
+
+    const recentNotifs = allNotifs.slice()
+      .sort((a, b) => dashboardTimestampMs(b.createdAt || b.scheduledAt) - dashboardTimestampMs(a.createdAt || a.scheduledAt))
+      .slice(0, 4)
+      .map(n => ({
+        title: n.title || n.type || "Уведомление",
+        subtitle: n.body || "Без текста",
+        side: fmtDateTime(n.createdAt || n.scheduledAt),
+        badge: `<span class="badge ${n.isRead ? "badge-read" : "badge-unread"}">${n.isRead ? "read" : "new"}</span>`
+      }));
+    renderDashboardList("dashRecentNotifs", recentNotifs, "Уведомлений пока нет");
+    setText("dashNotifsMeta", "4 последних");
+  }
 
   // ── USERS ──────────────────────────────────────────────────────────────
   function renderUsers(users) {
